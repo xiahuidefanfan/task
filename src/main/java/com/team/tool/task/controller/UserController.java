@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.team.tool.task.web.controller;
+package com.team.tool.task.controller;
 
 import java.util.ArrayList;
 import java.util.List;
