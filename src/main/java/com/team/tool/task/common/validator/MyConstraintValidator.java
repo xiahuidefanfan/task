@@ -1,7 +1,4 @@
-/**
- * 
- */
-package com.team.tool.task.validator;
+package com.team.tool.task.common.validator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

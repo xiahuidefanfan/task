@@ -1,8 +1,4 @@
-/**
- * 
- */
-package com.team.tool.task.validator;
-
+package com.team.tool.task.common.validator;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.springframework.validation.BindingResult;

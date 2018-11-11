@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.team.tool.task.dto;
+package com.team.tool.task.bean.condition;
 
 import io.swagger.annotations.ApiModelProperty;
 

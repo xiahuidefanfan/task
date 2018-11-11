@@ -1,7 +1,4 @@
-/**
- * 
- */
-package com.team.tool.task.validator;
+package com.team.tool.task.common.validator;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

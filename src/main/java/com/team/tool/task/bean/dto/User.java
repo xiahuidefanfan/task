@@ -1,7 +1,4 @@
-/**
- * 
- */
-package com.team.tool.task.dto;
+package com.team.tool.task.bean.dto;
 
 import java.util.Date;
 
@@ -10,7 +7,7 @@ import javax.validation.constraints.Past;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.team.tool.task.validator.MyConstraint;
+import com.team.tool.task.common.validator.MyConstraint;
 
 import io.swagger.annotations.ApiModelProperty;
 
