@@ -11,7 +11,7 @@ import com.team.tool.task.bean.model.SystemUser;
 
 /**
  * @ClassName: SystemUserMapper.java
- * @Description: SystemUser-dao层
+ * @Description: 系统用户dao层
  *
  * @version: v1.0.0
  * @author: xiahui
@@ -20,14 +20,21 @@ import com.team.tool.task.bean.model.SystemUser;
  * Modification History:
  * Date         Author          Version            Description
  *-------------------------------------------------------------*
- * 2018年11月12日     xiahui           v1.0.0             项目新建
+ * 2018年11月12日     xiahui           v1.0.0             系统用户dao层
  */
 public interface SystemUserMapper extends BaseMapper<SystemUser>{
 
     /**
-     * @Description: 获取所有用户
+     * @Description: 获取分页用户
      * @author xiahui
      * @date 2018年11月12日 上午10:27:15
      */
     List<Map<String, Object>> list(@Param("condition") SystemUserQueryCondition condition);
+    
+    /**
+     * @Description: 根据用户名查询用户
+     * @author xiahui
+     * @date 2018年11月12日 下午11:16:45
+     */
+    SystemUser queryUserByUserName(@Param("condition") String userName);
 }

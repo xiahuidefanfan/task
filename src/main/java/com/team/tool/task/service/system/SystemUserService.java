@@ -1,4 +1,4 @@
-package com.team.tool.task.service;
+package com.team.tool.task.service.system;
 
 import java.util.List;
 import java.util.Map;
@@ -30,4 +30,11 @@ public interface SystemUserService extends IService<SystemUser>{
      * @date 2018年11月12日 上午10:27:15
      */
     List<Map<String, Object>> list(@Param("condition") SystemUserQueryCondition condition);
+    
+    /**
+     * @Description: 根据用户名查询用户
+     * @author xiahui
+     * @date 2018年11月12日 下午11:16:45
+     */
+    SystemUser queryUserByUserName(@Param("condition") String userName);
 }

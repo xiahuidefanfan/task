@@ -3,7 +3,7 @@
  */
 package com.team.tool.task.bean.condition;
 
-import io.swagger.annotations.ApiModelProperty;
+import com.team.tool.task.bean.model.SystemUser;
 
 /**
  * @ClassName: UserQueryCondition.java
@@ -18,47 +18,8 @@ import io.swagger.annotations.ApiModelProperty;
  *-------------------------------------------------------------*
  * 2018年11月11日     xiahui           v1.0.0              创建项目
  */
-public class SystemUserQueryCondition {
-	
-	private String username;
-	
-	@ApiModelProperty(value = "用户年龄起始值")
-	private int age;
-	@ApiModelProperty(value = "用户年龄终止值")
-	private int ageTo;
-	
-	private String xxx;
+public class SystemUserQueryCondition extends SystemUser{
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public int getAgeTo() {
-		return ageTo;
-	}
-
-	public void setAgeTo(int ageTo) {
-		this.ageTo = ageTo;
-	}
-
-	public String getXxx() {
-		return xxx;
-	}
-
-	public void setXxx(String xxx) {
-		this.xxx = xxx;
-	}
+	private static final long serialVersionUID = 1L;
 	
 }

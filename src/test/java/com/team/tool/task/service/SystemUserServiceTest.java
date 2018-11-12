@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.team.tool.task.service.system.SystemUserService;
+
 /**
  * @ClassName: SystemUserServiceTest.java
  * @Description: SystemUserService测试

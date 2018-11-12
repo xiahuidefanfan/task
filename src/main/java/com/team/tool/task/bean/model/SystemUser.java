@@ -1,15 +1,23 @@
 package com.team.tool.task.bean.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.constraints.Past;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.team.tool.task.common.constants.ConstantFactory;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -26,101 +34,79 @@ import io.swagger.annotations.ApiModelProperty;
  *-------------------------------------------------------------*
  * 2018年11月10日     xiahui           v1.0.0            系统用户
  */
-public class SystemUser extends Model<SystemUser>{
+public class SystemUser extends Model<SystemUser> implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	
 	public interface SystemUserSimpleView {};
 	public interface SystemUserDetailView extends SystemUserSimpleView {};
-	/**
-     * 主键id
-     */
+	
 	@TableId(value="user_id", type= IdType.AUTO)
+	@ApiModelProperty(value = "主键id")
 	private Integer userId;
-    /**
-     * 头像
-     */
+   
 	@TableField(value="user_avatar")
+	@ApiModelProperty(value = "用户头像")
 	private String userAvatar;
-    /**
-     * 账号
-     */
+    
 	@TableField(value="user_realName")
-	@ApiModelProperty(value = "用户")
+	@ApiModelProperty(value = "用户实名")
 	private String userRealName;
-    /**
-     * 密码
-     */
+
 	@TableField(value="user_password")
 	@JsonView(SystemUserDetailView.class)
+	@ApiModelProperty(value = "用户密码")
 	private String userPassword;
-    /**
-     * md5密码盐
-     */
-	@TableField(value="user_salt")
-	private String userSalt;
-    /**
-     * 名字
-     */
+    
 	@TableField(value="user_name")
 	@JsonView(SystemUserSimpleView.class)
+	@ApiModelProperty(value = "用户账号")
 	private String userName;
-    /**
-     * 生日
-     */
+   
 	@TableField(value="user_birthday")
 	@Past(message = "生日必须是过去的时间")
+	@ApiModelProperty(value = "用户生日")
 	private Date userBirthday;
-    /**
-     * 性别（1：男 2：女）
-     */
+
 	@TableField(value="user_sex")
+	@ApiModelProperty(value = "性别（1：男 2：女）")
 	private Integer userSex;
-    /**
-     * 电子邮件
-     */
+    
 	@TableField(value="user_email")
+	@ApiModelProperty(value = "电子邮件")
 	private String userEmail;
     /**
      * 电话
      */
 	@TableField(value="user_phone")
+	@ApiModelProperty(value = "电话")
 	private String userPhone;
-    /**
-     * 角色id
-     */
+   
 	@TableField(value="user_role_id")
+	@ApiModelProperty(value = "角色id")
 	private String userRoleId;
-    /**
-     * 部门id
-     */
+    
 	@TableField(value="user_dept_id")
+	@ApiModelProperty(value = "部门id")
 	private Integer userDeptId;
-    /**
-     * 状态(1：启用  2：冻结  3：删除）
-     */
+
 	@TableField(value="user_status")
+	@ApiModelProperty(value = "状态(1：启用  2：冻结  3：删除）")
 	private Integer userStatus;
-	/**
-	 *  创建人
-	 */
+	
 	@TableField(value="creator")
+	@ApiModelProperty(value = "创建人")
 	private String creator;
 	
-	/**
-	 * 修改人
-	 */
 	@TableField(value="updator")
-	private String updator;
-    /**
-     * 创建时间
-     */
+	@ApiModelProperty(value = "修改人")
+	private Integer updator;
+   
 	@TableField(value="create_time")
+	@ApiModelProperty(value = "创建时间")
 	private Date createTime;
 	
-	 /**
-     * 修改时间
-     */
 	@TableField(value="update_time")
+	@ApiModelProperty(value = "修改时间")
 	private Date updateTime;
 	
 	public Integer getUserId() {
@@ -155,14 +141,6 @@ public class SystemUser extends Model<SystemUser>{
 		this.userPassword = userPassword;
 	}
 
-	public String getUserSalt() {
-		return userSalt;
-	}
-
-	public void setUserSalt(String userSalt) {
-		this.userSalt = userSalt;
-	}
-
 	public String getUserName() {
 		return userName;
 	}
@@ -183,7 +161,6 @@ public class SystemUser extends Model<SystemUser>{
 	public Integer getUserSex() {
 		return userSex;
 	}
-
 
 	public void setUserSex(Integer userSex) {
 		this.userSex = userSex;
@@ -237,11 +214,11 @@ public class SystemUser extends Model<SystemUser>{
 		this.creator = creator;
 	}
 
-	public String getUpdator() {
+	public Integer getUpdator() {
 		return updator;
 	}
 
-	public void setUpdator(String updator) {
+	public void setUpdator(Integer updator) {
 		this.updator = updator;
 	}
 
@@ -260,11 +237,51 @@ public class SystemUser extends Model<SystemUser>{
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
+	
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+	}
 
 	@Override
 	protected Serializable pkVal() {
 		return this.userId;
 	}
-	
-	
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<String> authorityIds = ConstantFactory.me().getAuthoritiesByRoleId(this.userRoleId);
+		return ConstantFactory.me().getAuthoritiesModelByMenuId(authorityIds);
+	}
+
+	@Override
+	public String getPassword() {
+		return this.userPassword;
+	}
+
+	@Override
+	public String getUsername() {
+		return this.userName;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+
 }
