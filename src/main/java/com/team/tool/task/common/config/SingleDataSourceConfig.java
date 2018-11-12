@@ -22,7 +22,7 @@ import com.team.tool.task.common.config.properties.DruidProperties;
  * Modification History:
  * Date         Author          Version            Description
  *-------------------------------------------------------------*
- * 2018年11月11日     xiahui           v1.0.0               修改原因
+ * 2018年11月11日     xiahui           v1.0.0             项目新建 
  */
 @Configuration
 @EnableTransactionManagement
