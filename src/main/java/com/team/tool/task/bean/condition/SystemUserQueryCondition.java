@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiModelProperty;
  *-------------------------------------------------------------*
  * 2018年11月11日     xiahui           v1.0.0              创建项目
  */
-public class UserQueryCondition {
+public class SystemUserQueryCondition {
 	
 	private String username;
 	

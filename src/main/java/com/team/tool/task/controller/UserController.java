@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.team.tool.task.bean.condition.UserQueryCondition;
+import com.team.tool.task.bean.condition.SystemUserQueryCondition;
 import com.team.tool.task.bean.dto.User;
 
 import io.swagger.annotations.ApiOperation;
@@ -47,7 +47,7 @@ public class UserController {
 	@GetMapping
 	@JsonView(User.UserSimpleView.class)
 	@ApiOperation(value = "用户查询服务")
-	public List<User> query(UserQueryCondition condition,
+	public List<User> query(SystemUserQueryCondition condition,
 			@PageableDefault(page = 2, size = 17, sort = "username,asc") Pageable pageable) {
 		System.out.println(ReflectionToStringBuilder.toString(condition, ToStringStyle.MULTI_LINE_STYLE));
 		System.out.println(pageable.getPageSize());

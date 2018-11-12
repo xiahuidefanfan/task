@@ -26,7 +26,7 @@ import com.team.tool.task.common.config.properties.DruidProperties;
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan(basePackages = {"com.team.tool.task.*.dao"})
+@MapperScan(basePackages = {"com.team.tool.task.dao"})
 public class SingleDataSourceConfig {
 	
 	@Bean

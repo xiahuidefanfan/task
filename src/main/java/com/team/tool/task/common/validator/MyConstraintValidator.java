@@ -3,18 +3,12 @@ package com.team.tool.task.common.validator;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.team.tool.task.service.HelloService;
-
 /**
  * @author zhailiang
  *
  */
 public class MyConstraintValidator implements ConstraintValidator<MyConstraint, Object> {
 
-	@Autowired
-	private HelloService helloService;
 	
 	@Override
 	public void initialize(MyConstraint constraintAnnotation) {
@@ -23,8 +17,6 @@ public class MyConstraintValidator implements ConstraintValidator<MyConstraint, 
 
 	@Override
 	public boolean isValid(Object value, ConstraintValidatorContext context) {
-		helloService.greeting("tom");
-		System.out.println(value);
 		return true;
 	}
 
