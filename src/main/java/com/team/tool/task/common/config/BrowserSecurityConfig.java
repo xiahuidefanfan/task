@@ -30,10 +30,11 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.formLogin()
-			.loginProcessingUrl("/login")
+			.loginProcessingUrl("/login.action").usernameParameter("username").passwordParameter("password")
 			.and()
 			.authorizeRequests()
 			.anyRequest()
 			.authenticated();
+		http.csrf().disable();
 	}
 }

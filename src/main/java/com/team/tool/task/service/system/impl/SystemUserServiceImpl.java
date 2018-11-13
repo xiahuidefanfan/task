@@ -33,7 +33,7 @@ public class SystemUserServiceImpl extends ServiceImpl<SystemUserMapper, SystemU
 	}
 
 	@Override
-	public SystemUser queryUserByUserName(String userName) {
-		return this.baseMapper.queryUserByUserName(userName);
+	public SystemUser queryUserByUserName(String username) {
+		return this.baseMapper.queryUserByUserName(username);
 	}
 }

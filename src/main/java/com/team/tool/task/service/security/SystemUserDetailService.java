@@ -17,8 +17,8 @@ import com.team.tool.task.service.system.SystemUserService;
  * @date: 2018年11月12日 下午11:04:17 
  *
  * Modification History:
- * Date         Author          Version            Description
- *-------------------------------------------------------------*
+ * Date           Author          Version             Description
+ *-----------------------------------------------------------------*
  * 2018年11月12日     xiahui           v1.0.0            系统登录service
  */
 @Component
@@ -28,8 +28,8 @@ public class SystemUserDetailService implements UserDetailsService {
 	private SystemUserService systemUserService;
 
 	@Override
-	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-		return systemUserService.queryUserByUserName(userName);
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		return systemUserService.queryUserByUserName(username);
 	}
 
 }

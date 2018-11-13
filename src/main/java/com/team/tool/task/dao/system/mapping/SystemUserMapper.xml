@@ -44,8 +44,8 @@
         	<include refid="Base_Column_List" /> 
         FROM SYS_USER AS sysu
         WHERE 1 = 1
-        <if test="userName != null and userName != ''">
-			AND sysu.user_name = #{userName}
+        <if test="username != null and username != ''">
+			AND sysu.user_name = #{username}
 		</if>
     </select>
 </mapper>

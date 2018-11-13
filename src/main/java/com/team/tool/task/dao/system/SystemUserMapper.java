@@ -36,5 +36,5 @@ public interface SystemUserMapper extends BaseMapper<SystemUser>{
      * @author xiahui
      * @date 2018年11月12日 下午11:16:45
      */
-    SystemUser queryUserByUserName(@Param("userName") String userName);
+    SystemUser queryUserByUserName(@Param("username") String username);
 }
