@@ -1,5 +1,6 @@
 package com.team.tool.task.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -7,8 +8,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.team.tool.task.bean.model.SystemUser;
 import com.team.tool.task.service.system.SystemUserService;
 
 /**
@@ -36,5 +39,21 @@ public class SystemUserServiceTest {
 		List<Map<String, Object>> userList = systemUserService.list(null);
 		System.out.println(userList);
 	}
+	
+	@Test
+	public void queryUserByUserName() {
+		SystemUser systemUser = systemUserService.queryUserByUserName("admin");
+		System.out.println(systemUser);
+	}
+	
+	@Test
+	public void insert() {
+		SystemUser systemUser = new SystemUser();
+		systemUser.setUserName("xiaoli");
+		systemUser.setUserPassword(new BCryptPasswordEncoder().encode("123456"));
+		systemUser.setUserBirthday(new Date());
+		systemUser.insert();
+	}
+	
 	
 }

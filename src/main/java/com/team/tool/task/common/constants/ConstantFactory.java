@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.team.tool.task.bean.model.SystemMenu;
 import com.team.tool.task.common.util.SpringContextHolder;
-import com.team.tool.task.dao.SystemMenuMapper;
+import com.team.tool.task.dao.system.SystemMenuMapper;
 
 @Component
 @DependsOn("springContextHolder")

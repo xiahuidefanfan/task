@@ -1,4 +1,4 @@
-package com.team.tool.task.dao;
+package com.team.tool.task.dao.system;
 
 import java.util.List;
 import java.util.Map;
@@ -36,5 +36,5 @@ public interface SystemUserMapper extends BaseMapper<SystemUser>{
      * @author xiahui
      * @date 2018年11月12日 下午11:16:45
      */
-    SystemUser queryUserByUserName(@Param("condition") String userName);
+    SystemUser queryUserByUserName(@Param("userName") String userName);
 }

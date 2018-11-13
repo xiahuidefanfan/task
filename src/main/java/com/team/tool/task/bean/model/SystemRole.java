@@ -9,6 +9,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -26,6 +27,7 @@ import io.swagger.annotations.ApiModelProperty;
  *-------------------------------------------------------------*
  * 2018年11月12日     xiahui           v1.0.0               修改原因
  */
+@TableName("sys_role")
 public class SystemRole extends Model<SystemRole> {
 	
 	private static final long serialVersionUID = 1L;

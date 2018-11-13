@@ -20,9 +20,9 @@ import com.team.tool.task.common.config.properties.DruidProperties;
  * @date: 2018年11月11日 下午11:04:08 
  *
  * Modification History:
- * Date         Author          Version            Description
- *-------------------------------------------------------------*
- * 2018年11月11日     xiahui           v1.0.0             项目新建 
+ * Date               Author          Version            Description
+ *-----------------------------------------------------------------*
+ * 2018年11月11日     xiahui           v1.0.0              项目新建 
  */
 @Configuration
 @EnableTransactionManagement

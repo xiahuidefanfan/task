@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.team.tool.task.dao.SystemUserMapper">
+<mapper namespace="com.team.tool.task.dao.system.SystemMenuMapper">
     
     <!-- 角色表字段 -->
     <sql id="Base_Column_List">
@@ -10,20 +10,22 @@
     
      <!-- 根据角色查询权限 -->
     <select id="getAuthoritiesByRoleId" resultType="string">
-    	SELECT menu_id 
-		FROM sys_relation AS sysr INNER JOIN sys_menu AS sysm
-		ON sysr.menuid = sysm.id 
-		WHERE sysr.roleid = #{roleId} 
+    	SELECT 
+    		sysm.menu_id AS menuId
+		FROM 
+			sys_relation AS sysr INNER JOIN sys_menu AS sysm ON sysr.menu_id = sysm.menu_id 
+		WHERE 
+			sysr.role_id = #{roleId} 
     </select>
     
     <!-- 根据权限获取权限实体  -->
-    <select id="getAuthoritiesModelByMenuId " resultType="com.team.tool.task.bean.model.SystemMenu">
+    <select id="getAuthoritiesModelByMenuId" resultType="com.team.tool.task.bean.model.SystemMenu">
 	    SELECT
 	    	<include refid="Base_Column_List" />
 	   	FROM 
-	   		sys_menu AS aysm
+	   		sys_menu AS sysm
 	   	where 
-	   		aysm.id in (#{menuIds})
+	   		sysm.menu_id in (#{menuIds})
 	</select>
     
 </mapper>

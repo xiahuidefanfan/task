@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.team.tool.task.bean.condition.SystemUserQueryCondition;
 import com.team.tool.task.bean.model.SystemUser;
-import com.team.tool.task.dao.SystemUserMapper;
+import com.team.tool.task.dao.system.SystemUserMapper;
 import com.team.tool.task.service.system.SystemUserService;
 
 /**

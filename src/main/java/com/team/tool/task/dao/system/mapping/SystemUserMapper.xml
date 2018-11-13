@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.tool.task.dao.system.SystemUserMapper">
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.team.tool.task.bean.model.SystemUser">
+		<id property="userId" column="user_id" />
+        <result property="userName" column="user_name" />
+        <result property="userPassword" column="user_password" />
+        <result property="userRealName" column="user_realName" />
+        <result property="userAvatar" column="user_avatar" />
+        <result property="userBirthday" column="user_birthday" />
+        <result property="userSex" column="user_sex" />
+        <result property="userRoleId" column="user_role_id" />
+        <result property="userEmail" column="user_email" />
+        <result property="userPhone" column="user_phone" />
+        <result property="userDeptId" column="user_dept_id" />
+        <result property="userStatus" column="user_status" />
+        <result property="createTime" column="create_time" />
+        <result property="updateTime" column="update_time" />
+        <result property="creator" column="creator" />
+        <result property="updator" column="updator" />
+	</resultMap>
+    
+     <!-- 用户表字段 -->
+    <sql id="Base_Column_List">
+        user_id, user_avatar, user_name, user_password, user_realName, user_birthday, user_sex, user_email, 
+        user_phone, user_role_id, user_dept_id, user_status, create_time, update_time, creator, updator
+    </sql>
+   
+    <!-- 分页查询用户 -->
+    <select id="list" resultType="map">
+        SELECT 
+        	<include refid="Base_Column_List" /> 
+        FROM SYS_USER AS sysu
+        WHERE 1 = 1
+        <if test="condition.userName != null and condition.userName != ''">
+			AND sysu.user_name = #{condition.userName}
+		</if>
+    </select>
+    
+     <!-- 根据用户名查询用户 -->
+    <select id="queryUserByUserName" resultMap="BaseResultMap">
+        SELECT 
+        	<include refid="Base_Column_List" /> 
+        FROM SYS_USER AS sysu
+        WHERE 1 = 1
+        <if test="userName != null and userName != ''">
+			AND sysu.user_name = #{userName}
+		</if>
+    </select>
+</mapper>
