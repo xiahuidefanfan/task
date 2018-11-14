@@ -10,7 +10,6 @@ import javax.validation.constraints.Past;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
@@ -36,7 +35,7 @@ import io.swagger.annotations.ApiModelProperty;
  * 2018年11月10日     xiahui           v1.0.0            系统用户
  */
 @TableName("sys_user")
-public class SystemUser extends Model<SystemUser> implements UserDetails {
+public class SystemUser extends Model<SystemUser> {
 	private static final long serialVersionUID = 1L;
 	
 	public interface SystemUserSimpleView {};
@@ -248,38 +247,23 @@ public class SystemUser extends Model<SystemUser> implements UserDetails {
 		return this.userId;
 	}
 
-	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		List<String> authorityIds = ConstantFactory.me().getAuthoritiesByRoleId(this.userRoleId);
+		List<Integer> authorityIds = ConstantFactory.me().getAuthoritiesByRoleId(this.userRoleId);
 		return ConstantFactory.me().getAuthoritiesModelByMenuId(authorityIds);
 	}
 
-	@Override
-	public String getPassword() {
-		return this.userPassword;
-	}
-
-	@Override
-	public String getUsername() {
-		return this.userName;
-	}
-
-	@Override
 	public boolean isAccountNonExpired() {
 		return true;
 	}
 
-	@Override
 	public boolean isAccountNonLocked() {
 		return true;
 	}
 
-	@Override
 	public boolean isCredentialsNonExpired() {
 		return true;
 	}
 
-	@Override
 	public boolean isEnabled() {
 		return true;
 	}

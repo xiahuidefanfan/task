@@ -25,7 +25,7 @@ public class ConstantFactory{
     * @author xiahui
     * @date 2018年11月12日 下午10:43:51
     */
-   public List<String> getAuthoritiesByRoleId(@Param("roleId") String roleId){
+   public List<Integer> getAuthoritiesByRoleId(@Param("roleId") String roleId){
 	   return systemMenuMapper.getAuthoritiesByRoleId(roleId);
    }
    
@@ -34,7 +34,7 @@ public class ConstantFactory{
     * @author xiahui
     * @date 2018年11月12日 下午10:58:53
     */
-   public List<SystemMenu> getAuthoritiesModelByMenuId(@Param("menuIds") List<String> menuIds){
+   public List<SystemMenu> getAuthoritiesModelByMenuId(@Param("menuIds") List<Integer> menuIds){
 	   return systemMenuMapper.getAuthoritiesModelByMenuId(menuIds);
    }
 }

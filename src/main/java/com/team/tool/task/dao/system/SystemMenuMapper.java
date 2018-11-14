@@ -36,12 +36,12 @@ public interface SystemMenuMapper extends BaseMapper<SystemMenu>{
      * @author xiahui
      * @date 2018年11月12日 下午10:40:56
      */
-    List<String> getAuthoritiesByRoleId(@Param("roleId") String roleId);
+    List<Integer> getAuthoritiesByRoleId(@Param("roleId") String roleId);
     
     /**
      * @Description: 根据权限获取权限实体
      * @author xiahui
      * @date 2018年11月12日 下午10:58:53
      */
-    List<SystemMenu> getAuthoritiesModelByMenuId(@Param("menuIds") List<String> menuIds);
+    List<SystemMenu> getAuthoritiesModelByMenuId(@Param("menuIds") List<Integer> menuIds);
 }

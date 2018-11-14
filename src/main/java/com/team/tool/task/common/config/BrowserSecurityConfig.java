@@ -15,9 +15,9 @@ import org.springframework.stereotype.Component;
  * @date: 2018年11月11日 下午10:04:02 
  *
  * Modification History:
- * Date         Author          Version            Description
- *-------------------------------------------------------------*
- * 2018年11月11日     xiahui           v1.0.0             创建项目
+ * Date         Author          Version               Description
+ *------------------------------------------------------------------*
+ * 2018年11月11日     xiahui           v1.0.0            创建项目
  */
 @Component
 public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {

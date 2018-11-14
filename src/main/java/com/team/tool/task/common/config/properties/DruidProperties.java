@@ -64,7 +64,6 @@ public class DruidProperties {
         // 打开PSCache，并且指定每个连接上PSCache的大小
         dataSource.setPoolPreparedStatements(poolPreparedStatements);
         dataSource.setMaxPoolPreparedStatementPerConnectionSize(maxPoolPreparedStatementPerConnectionSize);
-
         try {
             dataSource.setFilters(filters);
         } catch (SQLException e) {

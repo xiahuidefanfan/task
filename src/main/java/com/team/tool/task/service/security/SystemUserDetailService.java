@@ -1,11 +1,13 @@
 package com.team.tool.task.service.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import com.team.tool.task.bean.model.SystemUser;
 import com.team.tool.task.service.system.SystemUserService;
 
 /**
@@ -29,7 +31,9 @@ public class SystemUserDetailService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		return systemUserService.queryUserByUserName(username);
+		SystemUser systemUser = systemUserService.queryUserByUserName(username);
+		return new User(systemUser.getUserName(), systemUser.getUserPassword(), 
+				true, true, true, true, systemUser.getAuthorities());
 	}
 
 }
