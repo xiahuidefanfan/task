@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team.tool.task.dao.system.SystemUserMapper">
 	<!-- 通用查询映射结果 -->
-	<resultMap id="BaseResultMap" type="com.team.tool.task.bean.model.SystemUser">
+	<resultMap id="BaseResultMap" type="com.team.tool.task.bean.model.system.SystemUser">
 		<id property="userId" column="user_id" />
         <result property="userName" column="user_name" />
         <result property="userPassword" column="user_password" />

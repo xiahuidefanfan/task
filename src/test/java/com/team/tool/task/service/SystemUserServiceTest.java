@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.team.tool.task.bean.model.SystemUser;
+import com.team.tool.task.bean.model.system.SystemUser;
 import com.team.tool.task.service.system.SystemUserService;
 
 /**

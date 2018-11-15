@@ -1,4 +1,4 @@
-package com.team.tool.task.bean.model;
+package com.team.tool.task.bean.model.system;
 
 import java.io.Serializable;
 import java.util.Date;

@@ -40,9 +40,9 @@ public class SystemAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
-		LOGGER.info(authentication.getName() + "登录成功");
+		LOGGER.info(authentication.getName() + "登录成功！");
 		response.setContentType("application/json;charset=UTF-8");
-		response.getWriter().write(objectMapper.writeValueAsString(RespData.getRespData(true, authentication.toString(), "")));
+		response.getWriter().write(objectMapper.writeValueAsString(RespData.getRespData(true, authentication.getName(), "")));
 	}
 	
 }

@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.team.tool.task.bean.condition.SystemUserQueryCondition;
-import com.team.tool.task.bean.model.SystemUser;
+import com.team.tool.task.bean.model.system.SystemUser;
 
 /**
  * @ClassName: SystemUserService.java

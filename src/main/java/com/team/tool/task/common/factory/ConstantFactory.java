@@ -1,13 +1,14 @@
-package com.team.tool.task.common.constants;
+package com.team.tool.task.common.factory;
 
 import java.util.List;
+import java.util.Set;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
-import com.team.tool.task.bean.model.SystemMenu;
-import com.team.tool.task.common.util.SpringContextHolder;
+import com.team.tool.task.bean.model.system.SystemMenu;
+import com.team.tool.task.common.support.SpringContextHolder;
 import com.team.tool.task.dao.system.SystemMenuMapper;
 
 @Component
@@ -25,7 +26,7 @@ public class ConstantFactory{
     * @author xiahui
     * @date 2018年11月12日 下午10:43:51
     */
-   public List<Integer> getAuthoritiesByRoleId(@Param("roleId") String roleId){
+   public List<Integer> getAuthoritiesByRoleId(@Param("roleId") Integer roleId){
 	   return systemMenuMapper.getAuthoritiesByRoleId(roleId);
    }
    
@@ -34,7 +35,7 @@ public class ConstantFactory{
     * @author xiahui
     * @date 2018年11月12日 下午10:58:53
     */
-   public List<SystemMenu> getAuthoritiesModelByMenuId(@Param("menuIds") List<Integer> menuIds){
+   public Set<SystemMenu> getAuthoritiesModelByMenuId(@Param("menuIds") List<Integer> menuIds){
 	   return systemMenuMapper.getAuthoritiesModelByMenuId(menuIds);
    }
 }

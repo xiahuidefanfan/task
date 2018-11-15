@@ -1,4 +1,4 @@
-package com.team.tool.task.common.util;
+package com.team.tool.task.common.support;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

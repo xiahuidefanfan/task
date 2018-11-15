@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team.tool.task.dao.system.SystemMenuMapper">
     <!-- 通用查询映射结果 -->
-	<resultMap id="BaseResultMap" type="com.team.tool.task.bean.model.SystemMenu">
+	<resultMap id="BaseResultMap" type="com.team.tool.task.bean.model.system.SystemMenu">
 		<id property="menuId" column="menu_id" />
         <result property="menuCode" column="menu_code" />
         <result property="menuPcode" column="menu_pcode" />

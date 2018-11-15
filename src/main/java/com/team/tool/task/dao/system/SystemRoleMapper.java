@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.team.tool.task.bean.condition.SystemRoleQueryCondition;
-import com.team.tool.task.bean.model.SystemUser;
+import com.team.tool.task.bean.model.system.SystemUser;
 
 /**
  * @ClassName: SystemRoleMapper.java

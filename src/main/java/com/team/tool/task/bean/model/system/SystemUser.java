@@ -1,15 +1,12 @@
-package com.team.tool.task.bean.model;
+package com.team.tool.task.bean.model.system;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 import javax.validation.constraints.Past;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.springframework.security.core.GrantedAuthority;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
@@ -17,7 +14,6 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.fasterxml.jackson.annotation.JsonView;
-import com.team.tool.task.common.constants.ConstantFactory;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -81,8 +77,8 @@ public class SystemUser extends Model<SystemUser> {
 	private String userPhone;
    
 	@TableField(value="user_role_id")
-	@ApiModelProperty(value = "角色id")
-	private String userRoleId;
+	@ApiModelProperty(value = "角色id")	
+	private Integer userRoleId;
     
 	@TableField(value="user_dept_id")
 	@ApiModelProperty(value = "部门id")
@@ -156,7 +152,6 @@ public class SystemUser extends Model<SystemUser> {
 		this.userBirthday = userBirthday;
 	}
 
-
 	public Integer getUserSex() {
 		return userSex;
 	}
@@ -181,11 +176,11 @@ public class SystemUser extends Model<SystemUser> {
 		this.userPhone = userPhone;
 	}
 
-	public String getUserRoleId() {
+	public Integer getUserRoleId() {
 		return userRoleId;
 	}
 
-	public void setUserRoleId(String userRoleId) {
+	public void setUserRoleId(Integer userRoleId) {
 		this.userRoleId = userRoleId;
 	}
 
@@ -237,35 +232,22 @@ public class SystemUser extends Model<SystemUser> {
 		this.updateTime = updateTime;
 	}
 	
+	public String getUserRealName() {
+		return userRealName;
+	}
+
+	public void setUserRealName(String userRealName) {
+		this.userRealName = userRealName;
+	}
+
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
 	}
-
+	
 	@Override
 	protected Serializable pkVal() {
 		return this.userId;
 	}
-
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		List<Integer> authorityIds = ConstantFactory.me().getAuthoritiesByRoleId(this.userRoleId);
-		return ConstantFactory.me().getAuthoritiesModelByMenuId(authorityIds);
-	}
-
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	public boolean isEnabled() {
-		return true;
-	}
-
+	
 }

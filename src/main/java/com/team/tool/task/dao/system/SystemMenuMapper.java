@@ -2,12 +2,13 @@ package com.team.tool.task.dao.system;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.ibatis.annotations.Param;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.team.tool.task.bean.condition.SystemMenuQueryCondition;
-import com.team.tool.task.bean.model.SystemMenu;
+import com.team.tool.task.bean.model.system.SystemMenu;
 
 /**
  * @ClassName: SystemMenuMapper.java
@@ -36,12 +37,12 @@ public interface SystemMenuMapper extends BaseMapper<SystemMenu>{
      * @author xiahui
      * @date 2018年11月12日 下午10:40:56
      */
-    List<Integer> getAuthoritiesByRoleId(@Param("roleId") String roleId);
+    List<Integer> getAuthoritiesByRoleId(@Param("roleId") Integer roleId);
     
     /**
      * @Description: 根据权限获取权限实体
      * @author xiahui
      * @date 2018年11月12日 下午10:58:53
      */
-    List<SystemMenu> getAuthoritiesModelByMenuId(@Param("menuIds") List<Integer> menuIds);
+    Set<SystemMenu> getAuthoritiesModelByMenuId(@Param("menuIds") List<Integer> menuIds);
 }

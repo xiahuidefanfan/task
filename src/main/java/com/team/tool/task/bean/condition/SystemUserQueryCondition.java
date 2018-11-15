@@ -3,7 +3,7 @@
  */
 package com.team.tool.task.bean.condition;
 
-import com.team.tool.task.bean.model.SystemUser;
+import com.team.tool.task.bean.model.system.SystemUser;
 
 /**
  * @ClassName: UserQueryCondition.java
