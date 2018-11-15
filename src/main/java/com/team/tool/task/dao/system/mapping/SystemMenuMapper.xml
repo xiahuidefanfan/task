@@ -51,5 +51,52 @@
 			sysm.update_time 
 		DESC
 	</select>
+	
+	<!--菜单树形模型 -->
+	 <select id="getMenuTree" resultType="com.team.tool.task.bean.node.MenuNode">
+	    SELECT
+	    	sysm1.menu_id AS id,
+        	sysm1.menu_code AS code,
+        	sysm1.menu_code AS pcode,
+        	sysm1.menu_name AS name
+        FROM
+        	sys_menu AS sysm1
+        LEFT JOIN 
+        	sys_menu AS sysm2 
+        ON 
+        	sysm1.menu_pcode = sysm2.menu_code
+        WHERE 
+        	sysm1.menu_is_menu = 1
+        ORDER BY 
+        	sysm1.menu_order ASC
+	</select>
+	
+		<!--主页面菜单树形模型，需更据用户角色过滤 -->
+	<select id="getMenuTreeByRoleId" resultType="com.team.tool.task.bean.node.MenuNode">
+       SELECT
+		  sysm1.menu_id AS id,
+		  sysm1.menu_code AS `code`,
+		  sysm1.menu_pcode AS pcode,
+		  sysm1.menu_icon AS icon,
+		  sysm1.menu_name AS `name`,
+		  sysm1.menu_path AS path,
+		  sysm1.menu_order AS `order`,
+		  sysm1.menu_is_menu AS isMenu,
+		  sysm2.menu_id AS pid
+		FROM
+		  sys_menu AS sysm1 
+		LEFT JOIN sys_menu AS sysm2 ON sysm1.menu_pcode = sysm2.menu_code
+        INNER JOIN (
+        			SELECT menu_id
+		    		FROM sys_menu
+		    		WHERE menu_id 
+		    		IN (
+		    			SELECT menu_id FROM  sys_relation AS sysr
+				     	WHERE sysr.role_id = #{roleId}
+			     	)
+			     	) AS sysm3 ON sysm1.menu_id = sysm3.menu_id
+		WHERE sysm1.menu_is_menu = 1
+		ORDER BY sysm1.menu_order ASC
+    </select>
     
 </mapper>

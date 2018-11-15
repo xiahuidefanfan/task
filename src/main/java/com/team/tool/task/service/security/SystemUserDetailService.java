@@ -32,7 +32,7 @@ public class SystemUserDetailService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		SystemUser systemUser = systemUserService.queryUserByUserName(username);
-		return SecuritySupport.getSecurityUser(systemUser);
+		return SecuritySupport.bulidSecurityUser(systemUser);
 	}
 
 }

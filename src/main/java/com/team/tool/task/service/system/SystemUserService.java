@@ -20,7 +20,7 @@ import com.team.tool.task.bean.model.system.SystemUser;
  * Modification History:
  * Date         Author          Version            Description
  *-------------------------------------------------------------*
- * 2018年11月12日     xiahui           v1.0.0               修改原因
+ * 2018年11月12日     xiahui           v1.0.0       SystemUser-service层
  */
 public interface SystemUserService extends IService<SystemUser>{
 	

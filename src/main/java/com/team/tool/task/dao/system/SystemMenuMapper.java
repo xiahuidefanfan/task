@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.team.tool.task.bean.condition.SystemMenuQueryCondition;
 import com.team.tool.task.bean.model.system.SystemMenu;
+import com.team.tool.task.bean.node.MenuNode;
 
 /**
  * @ClassName: SystemMenuMapper.java
@@ -45,4 +46,18 @@ public interface SystemMenuMapper extends BaseMapper<SystemMenu>{
      * @date 2018年11月12日 下午10:58:53
      */
     Set<SystemMenu> getAuthoritiesModelByMenuId(@Param("menuIds") List<Integer> menuIds);
+    
+    /**
+     * @Description: 主页面菜单树形模型，需更据用户角色过滤
+     * @author xiahui
+     * @date 2018年11月15日 下午8:09:20
+     */
+    List<MenuNode> getMenuTreeByRoleId(@Param("roleId") Integer roleId);
+    
+    /**
+     * @Description: 菜单树形模型
+     * @author xiahui
+     * @date 2018年11月15日 下午5:36:58
+     */
+    List<MenuNode> getMenuTree();
 }

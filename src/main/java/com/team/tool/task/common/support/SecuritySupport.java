@@ -3,6 +3,8 @@ package com.team.tool.task.common.support;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+
 import com.team.tool.task.bean.dto.security.SecurityUser;
 import com.team.tool.task.bean.model.system.SystemMenu;
 import com.team.tool.task.bean.model.system.SystemUser;
@@ -25,13 +27,23 @@ import com.team.tool.task.common.util.ToolUtil;
  * 2018年11月15日     xiahui           v1.0.0         security支持工具
  */
 public class SecuritySupport {
+	
+	/**
+	 * @Description: 获取当前登录用户
+	 * @author xiahui
+	 * @date 2018年11月15日 下午8:17:33
+	 */
+	public static SecurityUser getSecurityUser() {
+		return (SecurityUser) SecurityContextHolder.getContext().getAuthentication() .getPrincipal();
+	}
+	
 
 	/**
 	 * @Description: 获取前端用户信息封装
 	 * @author xiahui
 	 * @date 2018年11月15日 下午1:04:28
 	 */
-	public static SecurityUser getSecurityUser(SystemUser systemUser) {
+	public static SecurityUser bulidSecurityUser(SystemUser systemUser) {
 		if(ToolUtil.isEmpty(systemUser)) {
 			throw new SystemException(ErrorCodeEnum.TASK1001);
 		}
