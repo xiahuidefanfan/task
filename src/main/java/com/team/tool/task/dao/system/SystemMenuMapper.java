@@ -34,6 +34,20 @@ public interface SystemMenuMapper extends BaseMapper<SystemMenu>{
     List<Map<String, Object>> list(@Param("condition") SystemMenuQueryCondition condition);
     
     /**
+     * @Description: 查询父级菜单列表 
+     * @author xiahui
+     * @date 2018年11月19日 下午1:11:10
+     */
+    List<Map<String, Object>> parentList();
+    
+    /**
+     * @Description: 根据父级菜单查询子菜单列表
+     * @author xiahui
+     * @date 2018年11月19日 下午1:46:53
+     */
+    List<Map<String, Object>> queryMenuListByParent(@Param("pcode") String pcode);
+    
+    /**
      * @Description: 根据角色查询权限
      * @author xiahui
      * @date 2018年11月12日 下午10:40:56

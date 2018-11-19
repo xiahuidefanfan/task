@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.tool.task.dao.system.SystemDictMapper">
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.team.tool.task.bean.model.system.SystemDict">
+		<id property="dictId" column="dict_id" />
+        <result property="dicPid" column="dict_pid" />
+        <result property="dictName" column="dict_name" />
+        <result property="dictCode" column="dict_code" />
+        <result property="dictOrder" column="dict_order" />
+        <result property="createTime" column="create_time" />
+        <result property="updateTime" column="update_time" />
+        <result property="creator" column="creator" />
+        <result property="updator" column="updator" />
+	</resultMap>
+    
+     <!-- 用户表字段 -->
+    <sql id="Base_Column_List">
+        dict_id, dict_pid, dict_name, dict_code, dict_order, create_time, update_time, creator, updator
+    </sql>
+   
+     <!-- 根据条件查询字典 -->
+    <select id="list" resultType="map">
+        SELECT 
+        	<include refid="Base_Column_List" /> 
+        FROM 
+        	sys_dict AS sysd
+        WHERE 
+        	1 = 1
+    </select>
+</mapper>

@@ -15,6 +15,19 @@ import com.baomidou.mybatisplus.enums.IdType;
 
 import io.swagger.annotations.ApiModelProperty;
 
+/**
+ * @ClassName: SystemMenu.java
+ * @Description: 系统菜单
+ *
+ * @version: v1.0.0
+ * @author: xiahui
+ * @date: 2018年11月19日 下午2:09:57 
+ *
+ * Modification History:
+ * Date         Author          Version            Description
+ *-------------------------------------------------------------*
+ * 2018年11月19日     xiahui           v1.0.0             系统菜单
+ */
 @TableName("sys_menu")
 public class SystemMenu extends Model<SystemRole> implements GrantedAuthority {
 

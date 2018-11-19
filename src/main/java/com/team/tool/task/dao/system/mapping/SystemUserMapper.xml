@@ -31,8 +31,10 @@
     <select id="list" resultType="map">
         SELECT 
         	<include refid="Base_Column_List" /> 
-        FROM SYS_USER AS sysu
-        WHERE 1 = 1
+        FROM 
+        	sys_user AS sysu
+        WHERE 
+        	1 = 1
         <if test="condition.userName != null and condition.userName != ''">
 			AND sysu.user_name = #{condition.userName}
 		</if>
@@ -42,8 +44,10 @@
     <select id="queryUserByUserName" resultMap="BaseResultMap">
         SELECT 
         	<include refid="Base_Column_List" /> 
-        FROM SYS_USER AS sysu
-        WHERE 1 = 1
+        FROM 
+        	sys_user AS sysu
+        WHERE 
+        	1 = 1
         <if test="username != null and username != ''">
 			AND sysu.user_name = #{username}
 		</if>

@@ -1,9 +1,9 @@
 package com.team.tool.task.common.factory;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +26,7 @@ public class ConstantFactory{
     * @author xiahui
     * @date 2018年11月12日 下午10:43:51
     */
-   public List<Integer> getAuthoritiesByRoleId(@Param("roleId") Integer roleId){
+   public List<Integer> getAuthoritiesByRoleId(Integer roleId){
 	   return systemMenuMapper.getAuthoritiesByRoleId(roleId);
    }
    
@@ -35,7 +35,16 @@ public class ConstantFactory{
     * @author xiahui
     * @date 2018年11月12日 下午10:58:53
     */
-   public Set<SystemMenu> getAuthoritiesModelByMenuId(@Param("menuIds") List<Integer> menuIds){
+   public Set<SystemMenu> getAuthoritiesModelByMenuId(List<Integer> menuIds){
 	   return systemMenuMapper.getAuthoritiesModelByMenuId(menuIds);
+   }
+   
+   /**
+    * @Description: 根据父级菜单查询子菜单列表
+    * @author xiahui
+    * @date 2018年11月19日 下午1:46:53
+    */
+   public List<Map<String, Object>> queryMenuListByParent(String pcode){
+	   return systemMenuMapper.queryMenuListByParent(pcode);
    }
 }

@@ -25,6 +25,48 @@
         menu_status, menu_is_menu, create_time, update_time, creator, updator
     </sql>
     
+     <!-- 根据条件查询菜单列表  -->
+    <select id="list" resultType="map">
+	    SELECT
+ 		 	menu_id AS menuId, menu_code AS menuCode, menu_pcode AS menuPcode, menu_name AS menuName, menu_icon AS menuIcon, menu_path AS menuPath, 
+ 		 	menu_order AS menuOrder, menu_status AS menuStatus, menu_is_menu AS menuIsMenu
+	   	FROM 
+	   		sys_menu AS sysm
+	   	WHERE 
+	   		1 = 1
+       	ORDER BY
+			sysm.update_time 
+		DESC
+	</select>
+	
+   	<!-- 查询父级菜单列表  -->
+    <select id="parentList" resultType="map">
+	    SELECT
+ 		 	menu_id AS menuId, menu_code AS menuCode, menu_pcode AS menuPcode, menu_name AS menuName, menu_icon AS menuIcon, menu_path AS menuPath, 
+ 		 	menu_order AS menuOrder, menu_status AS menuStatus, menu_is_menu AS menuIsMenu
+	   	FROM 
+	   		sys_menu AS sysm
+	   	WHERE 
+	   		sysm.menu_pcode = '0'
+       	ORDER BY
+			sysm.update_time 
+		DESC
+	</select>
+	
+  	<!-- 根据父级菜单查询子菜单列表  -->
+    <select id="queryMenuListByParent" resultType="map">
+	    SELECT
+ 		 	menu_id AS menuId, menu_code AS menuCode, menu_pcode AS menuPcode, menu_name AS menuName, menu_icon AS menuIcon, menu_path AS menuPath, 
+ 		 	menu_order AS menuOrder, menu_status AS menuStatus, menu_is_menu AS menuIsMenu
+	   	FROM 
+	   		sys_menu AS sysm
+	   	WHERE 
+	   		sysm.menu_pcode = #{pcode}
+       	ORDER BY
+			sysm.update_time 
+		DESC
+	</select>
+    
      <!-- 根据角色查询权限 -->
     <select id="getAuthoritiesByRoleId" resultType="string">
     	SELECT 

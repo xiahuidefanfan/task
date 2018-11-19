@@ -1,11 +1,13 @@
 package com.team.tool.task.service.system.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.team.tool.task.bean.condition.SystemMenuQueryCondition;
 import com.team.tool.task.bean.model.system.SystemMenu;
 import com.team.tool.task.bean.node.MenuNode;
 import com.team.tool.task.dao.system.SystemMenuMapper;
@@ -26,6 +28,21 @@ import com.team.tool.task.service.system.SystemMenuService;
  */
 @Service
 public class SystemMenuServiceImpl extends ServiceImpl<SystemMenuMapper, SystemMenu> implements SystemMenuService{
+	
+	@Override
+	public List<Map<String, Object>> list(SystemMenuQueryCondition condition) {
+		return this.baseMapper.list(condition);
+	}
+	
+	@Override
+	public List<Map<String, Object>> parentList(){
+		return this.baseMapper.parentList();
+	}
+	
+	@Override
+	public List<Map<String, Object>> queryMenuListByParent(String pcode){
+		return this.baseMapper.queryMenuListByParent(pcode);
+	}
 
 	@Override
 	public List<MenuNode> getMenuTree() {
