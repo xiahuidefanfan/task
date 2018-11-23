@@ -38,7 +38,7 @@ public interface SystemMenuMapper extends BaseMapper<SystemMenu>{
      * @author xiahui
      * @date 2018年11月19日 下午1:11:10
      */
-    List<Map<String, Object>> parentList();
+    List<Map<String, Object>> parentMenuList();
     
     /**
      * @Description: 根据父级菜单查询子菜单列表

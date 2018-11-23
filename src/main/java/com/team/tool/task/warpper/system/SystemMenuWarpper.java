@@ -3,6 +3,7 @@ package com.team.tool.task.warpper.system;
 import java.util.List;
 import java.util.Map;
 
+import com.team.tool.task.common.factory.ConstantFactory;
 import com.team.tool.task.common.warpper.BaseControllerWarpper;
 
 /**
@@ -26,8 +27,12 @@ public class SystemMenuWarpper extends BaseControllerWarpper{
 	
 	@Override
 	protected void warpTheMap(Map<String, Object> map) {
-		
+		/**
+		 * 设置子菜单
+		 */
+		String menuPcode = String.valueOf(map.get("menuCode"));
+		List<Map<String, Object>> childrens = ConstantFactory.me().queryMenuListByParent(menuPcode);
+		map.put("childrens", childrens);
 	}
-	
 	
 }

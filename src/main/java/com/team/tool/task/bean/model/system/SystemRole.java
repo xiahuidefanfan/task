@@ -25,7 +25,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Modification History:
  * Date         Author          Version            Description
  *-------------------------------------------------------------*
- * 2018年11月12日     xiahui           v1.0.0               修改原因
+ * 2018年11月12日     xiahui           v1.0.0            系统角色
  */
 @TableName("sys_role")
 public class SystemRole extends Model<SystemRole> {

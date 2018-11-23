@@ -32,7 +32,7 @@ public class SystemMenuServiceTest {
 	
 	@Test
 	public void parentList() {
-		LOGGER.info("查询父级菜单集合为：" + systemMenuService.parentList().toString());
+		LOGGER.info("查询父级菜单集合为：" + systemMenuService.parentMenuList().toString());
 	}
 
 }

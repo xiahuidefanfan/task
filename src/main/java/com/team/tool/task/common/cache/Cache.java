@@ -29,4 +29,9 @@ public interface Cache {
      * 菜单缓存
      */
     String SYSTEM_MENU = "SYSTEM_MENU";
+    
+    /**
+     * 角色缓存
+     */
+    String SYSTEM_ROLE = "SYSTEM_ROLE";
 }

@@ -35,8 +35,8 @@ public class SystemMenuServiceImpl extends ServiceImpl<SystemMenuMapper, SystemM
 	}
 	
 	@Override
-	public List<Map<String, Object>> parentList(){
-		return this.baseMapper.parentList();
+	public List<Map<String, Object>> parentMenuList(){
+		return this.baseMapper.parentMenuList();
 	}
 	
 	@Override

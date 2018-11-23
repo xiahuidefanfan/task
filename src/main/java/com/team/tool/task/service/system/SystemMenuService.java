@@ -37,10 +37,10 @@ public interface SystemMenuService extends IService<SystemMenu>{
      * @author xiahui
      * @date 2018年11月19日 下午1:11:10
      */
-    List<Map<String, Object>> parentList();
+    List<Map<String, Object>> parentMenuList();
     
     /**
-     * @Description: queryListByParent
+     * @Description: 根据父级菜单查询子菜单列表
      * @author xiahui
      * @date 2018年11月19日 下午1:46:53
      */

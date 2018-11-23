@@ -40,7 +40,7 @@
 	</select>
 	
    	<!-- 查询父级菜单列表  -->
-    <select id="parentList" resultType="map">
+    <select id="parentMenuList" resultType="map">
 	    SELECT
  		 	menu_id AS menuId, menu_code AS menuCode, menu_pcode AS menuPcode, menu_name AS menuName, menu_icon AS menuIcon, menu_path AS menuPath, 
  		 	menu_order AS menuOrder, menu_status AS menuStatus, menu_is_menu AS menuIsMenu

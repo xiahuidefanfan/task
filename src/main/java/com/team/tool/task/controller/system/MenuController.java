@@ -36,8 +36,8 @@ public class MenuController {
     @PostMapping(value = "/list.action")
     @ApiOperation(value = "菜单列表查询")
     public RespData list(@RequestBody(required=false) SystemMenuQueryCondition condition) {
-        List<Map<String, Object>> parentList = this.systemMenuService.parentList();
-        return RespData.getRespData(true, new SystemMenuWarpper(parentList), "");
+        List<Map<String, Object>> parentList = this.systemMenuService.parentMenuList();
+        return RespData.getRespData(true, new SystemMenuWarpper(parentList).warp(), "");
     }
 	
     /**
