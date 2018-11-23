@@ -9,8 +9,17 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 /**
- * @author zhailiang
+ * @ClassName: MyConstraint.java
+ * @Description: 自定义校验注解
  *
+ * @version: v1.0.0
+ * @author: xiahui
+ * @date: 2018年11月23日 上午10:12:05 
+ *
+ * Modification History:
+ * Date         Author          Version            Description
+ *-------------------------------------------------------------*
+ * 2018年11月23日     xiahui           v1.0.0           自定义校验注解
  */
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)

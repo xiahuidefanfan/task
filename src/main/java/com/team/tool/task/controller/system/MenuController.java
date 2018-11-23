@@ -19,7 +19,19 @@ import com.team.tool.task.service.system.SystemMenuService;
 import com.team.tool.task.warpper.system.SystemMenuWarpper;
 
 import io.swagger.annotations.ApiOperation;
-
+/**
+ * @ClassName: MenuController.java
+ * @Description: 菜单控制器
+ *
+ * @version: v1.0.0
+ * @author: xiahui
+ * @date: 2018年11月23日 上午10:17:49 
+ *
+ * Modification History:
+ * Date         Author          Version            Description
+ *-------------------------------------------------------------*
+ * 2018年11月23日     xiahui           v1.0.0           菜单控制器
+ */
 @RestController
 @RequestMapping("/menu")
 public class MenuController {

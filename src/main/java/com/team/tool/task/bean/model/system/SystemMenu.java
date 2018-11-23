@@ -216,4 +216,139 @@ public class SystemMenu extends Model<SystemRole> implements GrantedAuthority {
 		return this.menuCode;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((createTime == null) ? 0 : createTime.hashCode());
+		result = prime * result + ((creator == null) ? 0 : creator.hashCode());
+		result = prime * result + ((menuCode == null) ? 0 : menuCode.hashCode());
+		result = prime * result + ((menuIcon == null) ? 0 : menuIcon.hashCode());
+		result = prime * result + ((menuId == null) ? 0 : menuId.hashCode());
+		result = prime * result + ((menuIsMenu == null) ? 0 : menuIsMenu.hashCode());
+		result = prime * result + ((menuName == null) ? 0 : menuName.hashCode());
+		result = prime * result + ((menuOrder == null) ? 0 : menuOrder.hashCode());
+		result = prime * result + ((menuPath == null) ? 0 : menuPath.hashCode());
+		result = prime * result + ((menuPcode == null) ? 0 : menuPcode.hashCode());
+		result = prime * result + ((menuPcodes == null) ? 0 : menuPcodes.hashCode());
+		result = prime * result + ((menuStatus == null) ? 0 : menuStatus.hashCode());
+		result = prime * result + ((updateTime == null) ? 0 : updateTime.hashCode());
+		result = prime * result + ((updator == null) ? 0 : updator.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		SystemMenu other = (SystemMenu) obj;
+		if (createTime == null) {
+			if (other.createTime != null) {
+				return false;
+			}
+		} else if (!createTime.equals(other.createTime)) {
+			return false;
+		}
+		if (creator == null) {
+			if (other.creator != null) {
+				return false;
+			}
+		} else if (!creator.equals(other.creator)) {
+			return false;
+		}
+		if (menuCode == null) {
+			if (other.menuCode != null) {
+				return false;
+			}
+		} else if (!menuCode.equals(other.menuCode)) {
+			return false;
+		}
+		if (menuIcon == null) {
+			if (other.menuIcon != null) {
+				return false;
+			}
+		} else if (!menuIcon.equals(other.menuIcon)) {
+			return false;
+		}
+		if (menuId == null) {
+			if (other.menuId != null) {
+				return false;
+			}
+		} else if (!menuId.equals(other.menuId)) {
+			return false;
+		}
+		if (menuIsMenu == null) {
+			if (other.menuIsMenu != null) {
+				return false;
+			}
+		} else if (!menuIsMenu.equals(other.menuIsMenu)) {
+			return false;
+		}
+		if (menuName == null) {
+			if (other.menuName != null) {
+				return false;
+			}
+		} else if (!menuName.equals(other.menuName)) {
+			return false;
+		}
+		if (menuOrder == null) {
+			if (other.menuOrder != null) {
+				return false;
+			}
+		} else if (!menuOrder.equals(other.menuOrder)) {
+			return false;
+		}
+		if (menuPath == null) {
+			if (other.menuPath != null) {
+				return false;
+			}
+		} else if (!menuPath.equals(other.menuPath)) {
+			return false;
+		}
+		if (menuPcode == null) {
+			if (other.menuPcode != null) {
+				return false;
+			}
+		} else if (!menuPcode.equals(other.menuPcode)) {
+			return false;
+		}
+		if (menuPcodes == null) {
+			if (other.menuPcodes != null) {
+				return false;
+			}
+		} else if (!menuPcodes.equals(other.menuPcodes)) {
+			return false;
+		}
+		if (menuStatus == null) {
+			if (other.menuStatus != null) {
+				return false;
+			}
+		} else if (!menuStatus.equals(other.menuStatus)) {
+			return false;
+		}
+		if (updateTime == null) {
+			if (other.updateTime != null) {
+				return false;
+			}
+		} else if (!updateTime.equals(other.updateTime)) {
+			return false;
+		}
+		if (updator == null) {
+			if (other.updator != null) {
+				return false;
+			}
+		} else if (!updator.equals(other.updator)) {
+			return false;
+		}
+		return true;
+	}
+
+	
 }

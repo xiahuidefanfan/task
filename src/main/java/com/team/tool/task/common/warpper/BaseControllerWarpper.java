@@ -41,5 +41,11 @@ public abstract class BaseControllerWarpper {
         }
     }
 
+    /**
+     * @Description: 包装逻辑抽象
+     * @author: xiahui
+     * @param map:原始数据   
+     * @date: 2018年11月23日 上午10:14:19
+     */
     protected abstract void warpTheMap(Map<String, Object> map);
 }

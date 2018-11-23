@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.team.tool.task.service.security.SystemUserDetailService;
+import com.team.tool.task.service.security.SystemUserDetailServiceImpl;
 
 /**
  * 
@@ -45,7 +45,7 @@ public class SecurityBeanConfig {
 	@Bean
 	@ConditionalOnMissingBean(UserDetailsService.class)
 	public UserDetailsService userDetailsService() {
-		return new SystemUserDetailService();
+		return new SystemUserDetailServiceImpl();
 	}
 
 }

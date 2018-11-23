@@ -21,7 +21,9 @@ public class RespData {
 
     private String message;
     
-    // 分页时的记录总数
+    /**
+     * 分页时的记录总数
+     */
     private long totalCount;
 
     public Object getDatas() {

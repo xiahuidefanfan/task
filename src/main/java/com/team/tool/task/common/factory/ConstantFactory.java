@@ -14,6 +14,19 @@ import com.team.tool.task.common.cache.CacheKey;
 import com.team.tool.task.common.support.SpringContextHolder;
 import com.team.tool.task.dao.system.SystemMenuMapper;
 
+/**
+ * @ClassName: ConstantFactory.java
+ * @Description: 常用查询工厂
+ *
+ * @version: v1.0.0
+ * @author: xiahui
+ * @date: 2018年11月23日 上午10:09:31 
+ *
+ * Modification History:
+ * Date         Author          Version            Description
+ *-------------------------------------------------------------*
+ * 2018年11月23日     xiahui           v1.0.0          常用查询工厂
+ */
 @Component
 @DependsOn("springContextHolder")
 public class ConstantFactory{

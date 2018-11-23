@@ -127,6 +127,7 @@ public class SecurityUser implements UserDetails{
 		this.permissions = permissions;
 	}	
 	
+	@Override
 	public boolean isAccountNonExpired() {
 		return accountNonExpired;
 	}
@@ -135,6 +136,7 @@ public class SecurityUser implements UserDetails{
 		this.accountNonExpired = accountNonExpired;
 	}
 
+	@Override
 	public boolean isAccountNonLocked() {
 		return accountNonLocked;
 	}
@@ -143,6 +145,7 @@ public class SecurityUser implements UserDetails{
 		this.accountNonLocked = accountNonLocked;
 	}
 
+	@Override
 	public boolean isCredentialsNonExpired() {
 		return credentialsNonExpired;
 	}
@@ -151,6 +154,7 @@ public class SecurityUser implements UserDetails{
 		this.credentialsNonExpired = credentialsNonExpired;
 	}
 
+	@Override
 	public boolean isEnabled() {
 		return enabled;
 	}
