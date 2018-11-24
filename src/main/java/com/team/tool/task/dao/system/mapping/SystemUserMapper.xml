@@ -28,7 +28,7 @@
     </sql>
    
     <!-- 分页查询用户 -->
-    <select id="list" resultType="map">
+    <select id="queryList" resultType="map">
         SELECT 
         	<include refid="Base_Column_List" /> 
         FROM 

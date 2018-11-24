@@ -29,5 +29,5 @@ public interface SystemRoleMapper extends BaseMapper<SystemUser>{
      * @author xiahui
      * @date 2018年11月12日 下午10:04:37
      */
-    List<Map<String, Object>> list(@Param("condition") SystemRoleQueryCondition condition);
+    List<Map<String, Object>> queryList(@Param("condition") SystemRoleQueryCondition condition);
 }

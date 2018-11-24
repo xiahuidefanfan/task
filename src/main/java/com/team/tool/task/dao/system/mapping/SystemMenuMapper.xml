@@ -19,19 +19,22 @@
         <result property="updator" column="updator" />
 	</resultMap>
     
-    <!-- 角色表字段 -->
+    <!-- 菜单表字段 -->
     <sql id="Base_Column_List">
         menu_id, menu_code, menu_pcode, menu_pcodes, menu_name, menu_icon, menu_path, menu_order, 
         menu_status, menu_is_menu, create_time, update_time, creator, updator
     </sql>
     
      <!-- 根据条件查询菜单列表  -->
-    <select id="list" resultType="map">
+    <select id="queryList" resultType="map">
 	    SELECT
- 		 	menu_id AS menuId, menu_code AS menuCode, menu_pcode AS menuPcode, menu_name AS menuName, menu_icon AS menuIcon, menu_path AS menuPath, 
- 		 	menu_order AS menuOrder, menu_status AS menuStatus, menu_is_menu AS menuIsMenu
+ 		 	sysm.menu_id AS menuId, sysm.menu_code AS menuCode, sysm.menu_pcode AS menuPcode, sysm.menu_name AS menuName, sysm.menu_icon AS menuIcon, sysm.menu_path AS menuPath, 
+ 		 	sysm.menu_order AS menuOrder, sysm.menu_status AS menuStatus, sysm.menu_is_menu AS menuIsMenu, sysm.create_time AS createTime, sysm.update_time AS updateTime, 
+ 		 	sysm.creator AS creator, sysuc.user_realName AS creatorName, sysm.updator AS updator, sysuu.user_realName AS updatorName
 	   	FROM 
 	   		sys_menu AS sysm
+   		LEFT JOIN sys_user sysuc ON sysm.creator = sysuc.user_id
+        LEFT JOIN sys_user sysuu ON sysm.updator = sysuu.user_id
 	   	WHERE 
 	   		1 = 1
        	ORDER BY
@@ -40,12 +43,15 @@
 	</select>
 	
    	<!-- 查询父级菜单列表  -->
-    <select id="parentMenuList" resultType="map">
+    <select id="queryParentMenuList" resultType="map">
 	    SELECT
  		 	menu_id AS menuId, menu_code AS menuCode, menu_pcode AS menuPcode, menu_name AS menuName, menu_icon AS menuIcon, menu_path AS menuPath, 
- 		 	menu_order AS menuOrder, menu_status AS menuStatus, menu_is_menu AS menuIsMenu
+ 		 	menu_order AS menuOrder, menu_status AS menuStatus, menu_is_menu AS menuIsMenu, sysm.create_time AS createTime, sysm.update_time AS updateTime, 
+ 		 	sysm.creator AS creator, sysuc.user_realName AS creatorName, sysm.updator AS updator, sysuu.user_realName AS updatorName
 	   	FROM 
 	   		sys_menu AS sysm
+   		LEFT JOIN sys_user sysuc ON sysm.creator = sysuc.user_id
+        LEFT JOIN sys_user sysuu ON sysm.updator = sysuu.user_id
 	   	WHERE 
 	   		sysm.menu_pcode = '0'
        	ORDER BY
@@ -56,19 +62,21 @@
   	<!-- 根据父级菜单查询子菜单列表  -->
     <select id="queryMenuListByParent" resultType="map">
 	    SELECT
- 		 	menu_id AS menuId, menu_code AS menuCode, menu_pcode AS menuPcode, menu_name AS menuName, menu_icon AS menuIcon, menu_path AS menuPath, 
- 		 	menu_order AS menuOrder, menu_status AS menuStatus, menu_is_menu AS menuIsMenu
+ 		 	sysm.menu_id AS menuId, sysm.menu_code AS menuCode, sysm.menu_pcode AS menuPcode, sysm.menu_name AS menuName, sysm.menu_icon AS menuIcon, sysm.menu_path AS menuPath, 
+ 		 	sysm.menu_order AS menuOrder, sysm.menu_status AS menuStatus, sysm.menu_is_menu AS menuIsMenu, sysm.create_time AS createTime, sysm.update_time AS updateTime, 
+ 		 	sysm.creator AS creator, sysuc.user_realName AS creatorName, sysm.updator AS updator, sysuu.user_realName AS updatorName
 	   	FROM 
 	   		sys_menu AS sysm
+	   	LEFT JOIN sys_user sysuc ON sysm.creator = sysuc.user_id
+        LEFT JOIN sys_user sysuu ON sysm.updator = sysuu.user_id
 	   	WHERE 
 	   		sysm.menu_pcode = #{pcode}
        	ORDER BY
-			sysm.update_time 
-		DESC
+			sysm.menu_order ASC, sysm.update_time DESC
 	</select>
     
      <!-- 根据角色查询权限 -->
-    <select id="getAuthoritiesByRoleId" resultType="string">
+    <select id="queryAuthoritiesByRoleId" resultType="string">
     	SELECT 
     		sysm.menu_id AS menuId
 		FROM 
@@ -78,7 +86,7 @@
     </select>
     
     <!-- 根据权限获取权限实体  -->
-    <select id="getAuthoritiesModelByMenuId" resultMap="BaseResultMap">
+    <select id="queryAuthoritiesModelByMenuId" resultMap="BaseResultMap">
 	    SELECT
     		<include refid="Base_Column_List" /> 
 	   	FROM 
@@ -95,7 +103,7 @@
 	</select>
 	
 	<!--菜单树形模型 -->
-	 <select id="getMenuTree" resultType="com.team.tool.task.bean.node.MenuNode">
+	 <select id="queryMenuTree" resultType="com.team.tool.task.bean.node.MenuNode">
 	    SELECT
 	    	sysm1.menu_id AS id,
         	sysm1.menu_code AS code,
@@ -114,7 +122,7 @@
 	</select>
 	
 		<!--主页面菜单树形模型，需更据用户角色过滤 -->
-	<select id="getMenuTreeByRoleId" resultType="com.team.tool.task.bean.node.MenuNode">
+	<select id="queryMenuTreeByRoleId" resultType="com.team.tool.task.bean.node.MenuNode">
        SELECT
 		  sysm1.menu_id AS id,
 		  sysm1.menu_code AS `code`,

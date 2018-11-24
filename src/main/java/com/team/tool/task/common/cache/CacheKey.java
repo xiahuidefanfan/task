@@ -24,5 +24,10 @@ public interface CacheKey {
      * 角色id
      */
     String ROLE_ID = "role_id_";
+    
+    /**
+     * 字典
+     */
+    String DICT = "dict";
      
 }

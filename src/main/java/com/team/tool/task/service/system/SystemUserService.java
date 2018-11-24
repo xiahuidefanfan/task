@@ -25,11 +25,11 @@ import com.team.tool.task.bean.model.system.SystemUser;
 public interface SystemUserService extends IService<SystemUser>{
 	
 	 /**
-     * @Description: 获取所有用户
+     * @Description: 根据条件查询用户
      * @author xiahui
      * @date 2018年11月12日 上午10:27:15
      */
-    List<Map<String, Object>> list(@Param("condition") SystemUserQueryCondition condition);
+    List<Map<String, Object>> queryList(@Param("condition") SystemUserQueryCondition condition);
     
     /**
      * @Description: 根据用户名查询用户

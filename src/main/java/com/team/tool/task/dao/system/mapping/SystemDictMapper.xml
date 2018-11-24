@@ -14,17 +14,20 @@
         <result property="updator" column="updator" />
 	</resultMap>
     
-     <!-- 用户表字段 -->
+     <!-- 字典表字段 -->
     <sql id="Base_Column_List">
         dict_id, dict_pid, dict_name, dict_code, dict_order, create_time, update_time, creator, updator
     </sql>
    
      <!-- 根据条件查询字典 -->
-    <select id="list" resultType="map">
+    <select id="queryList" resultType="map">
         SELECT 
-        	<include refid="Base_Column_List" /> 
+       		sysd.dict_id AS dictId, sysd.dict_pid AS dictPid, sysd.dict_name AS dictName, sysd.dict_code AS dictCode, sysd.dict_order AS dictOrder, 
+       		sysd.create_time AS createTime, sysd.update_time AS updateTime, sysuc.user_realName AS creator, sysuu.user_realName AS updator
         FROM 
-        	sys_dict AS sysd
+        	sys_dict AS sysd 
+        LEFT JOIN sys_user sysuc ON sysd.creator = sysuc.user_id
+        LEFT JOIN sys_user sysuu ON sysd.updator = sysuu.user_id
         WHERE 
         	1 = 1
     </select>

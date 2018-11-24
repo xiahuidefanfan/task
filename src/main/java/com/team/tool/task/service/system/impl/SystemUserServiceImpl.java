@@ -28,8 +28,8 @@ import com.team.tool.task.service.system.SystemUserService;
 public class SystemUserServiceImpl extends ServiceImpl<SystemUserMapper, SystemUser> implements SystemUserService{
 
 	@Override
-	public List<Map<String, Object>> list(SystemUserQueryCondition condition) {
-		return this.baseMapper.list(condition);
+	public List<Map<String, Object>> queryList(SystemUserQueryCondition condition) {
+		return this.baseMapper.queryList(condition);
 	}
 
 	@Override

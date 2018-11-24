@@ -12,6 +12,7 @@ import com.team.tool.task.bean.model.system.SystemMenu;
 import com.team.tool.task.common.cache.Cache;
 import com.team.tool.task.common.cache.CacheKey;
 import com.team.tool.task.common.support.SpringContextHolder;
+import com.team.tool.task.dao.system.SystemDictMapper;
 import com.team.tool.task.dao.system.SystemMenuMapper;
 
 /**
@@ -32,9 +33,20 @@ import com.team.tool.task.dao.system.SystemMenuMapper;
 public class ConstantFactory{
 
    private SystemMenuMapper systemMenuMapper = SpringContextHolder.getBean(SystemMenuMapper.class);
+   private SystemDictMapper systemDictMapper = SpringContextHolder.getBean(SystemDictMapper.class);
     
    public static ConstantFactory me() {
        return SpringContextHolder.getBean("constantFactory");
+   }
+   
+   /**
+    * @Description: 查询全部字典
+    * @author: xiahui
+    * @date: 2018年11月23日 下午3:47:03
+    */
+   @Cacheable(value = Cache.SYSTEM_DICT, key = "'" + CacheKey.DICT + "'")
+   public List<Map<String, Object>> queryAllDicts() {
+		return this.systemDictMapper.queryList(null);
    }
    
    /**
@@ -43,8 +55,8 @@ public class ConstantFactory{
     * @date 2018年11月12日 下午10:43:51
     */
    @Cacheable(value = Cache.SYSTEM_ROLE, key = "'" + CacheKey.ROLE_ID + "'+#roleId")
-   public List<Integer> getAuthoritiesByRoleId(Integer roleId){
-	   return systemMenuMapper.getAuthoritiesByRoleId(roleId);
+   public List<Integer> queryAuthoritiesByRoleId(Integer roleId){
+	   return systemMenuMapper.queryAuthoritiesByRoleId(roleId);
    }
    
    /**
@@ -52,8 +64,8 @@ public class ConstantFactory{
     * @author xiahui
     * @date 2018年11月12日 下午10:58:53
     */
-   public Set<SystemMenu> getAuthoritiesModelByMenuId(List<Integer> menuIds){
-	   return systemMenuMapper.getAuthoritiesModelByMenuId(menuIds);
+   public Set<SystemMenu> queryAuthoritiesModelByMenuId(List<Integer> menuIds){
+	   return systemMenuMapper.queryAuthoritiesModelByMenuId(menuIds);
    }
    
    /**

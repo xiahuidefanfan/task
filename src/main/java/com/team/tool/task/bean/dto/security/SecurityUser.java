@@ -165,8 +165,8 @@ public class SecurityUser implements UserDetails{
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		List<Integer> authorityIds = ConstantFactory.me().getAuthoritiesByRoleId(this.userRoleId);
-		return ConstantFactory.me().getAuthoritiesModelByMenuId(authorityIds);
+		List<Integer> authorityIds = ConstantFactory.me().queryAuthoritiesByRoleId(this.userRoleId);
+		return ConstantFactory.me().queryAuthoritiesModelByMenuId(authorityIds);
 	}
 	
 	@Override

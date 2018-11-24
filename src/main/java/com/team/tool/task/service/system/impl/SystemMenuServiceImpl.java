@@ -30,13 +30,13 @@ import com.team.tool.task.service.system.SystemMenuService;
 public class SystemMenuServiceImpl extends ServiceImpl<SystemMenuMapper, SystemMenu> implements SystemMenuService{
 	
 	@Override
-	public List<Map<String, Object>> list(SystemMenuQueryCondition condition) {
-		return this.baseMapper.list(condition);
+	public List<Map<String, Object>> queryList(SystemMenuQueryCondition condition) {
+		return this.baseMapper.queryList(condition);
 	}
 	
 	@Override
-	public List<Map<String, Object>> parentMenuList(){
-		return this.baseMapper.parentMenuList();
+	public List<Map<String, Object>> queryParentMenuList(){
+		return this.baseMapper.queryParentMenuList();
 	}
 	
 	@Override
@@ -45,13 +45,13 @@ public class SystemMenuServiceImpl extends ServiceImpl<SystemMenuMapper, SystemM
 	}
 
 	@Override
-	public List<MenuNode> getMenuTree() {
-		return this.baseMapper.getMenuTree();
+	public List<MenuNode> queryMenuTree() {
+		return this.baseMapper.queryMenuTree();
 	}
 	
 	@Override
-	public List<MenuNode> getMenuTreeByRoleId(@Param("roleId") Integer roleId){
-		return this.baseMapper.getMenuTreeByRoleId(roleId);
+	public List<MenuNode> queryMenuTreeByRoleId(@Param("roleId") Integer roleId){
+		return this.baseMapper.queryMenuTreeByRoleId(roleId);
 	}
 
 }

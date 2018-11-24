@@ -26,18 +26,18 @@ import com.team.tool.task.bean.node.MenuNode;
 public interface SystemMenuService extends IService<SystemMenu>{
 	
 	/**
-     * @Description: 获取分页菜单
+     * @Description: 根据条件查询菜单
      * @author xiahui
      * @date 2018年11月16日 下午16:37:15
      */
-    List<Map<String, Object>> list(@Param("condition") SystemMenuQueryCondition condition);
+    List<Map<String, Object>> queryList(@Param("condition") SystemMenuQueryCondition condition);
     
     /**
      * @Description: 查询父级菜单列表 
      * @author xiahui
      * @date 2018年11月19日 下午1:11:10
      */
-    List<Map<String, Object>> parentMenuList();
+    List<Map<String, Object>> queryParentMenuList();
     
     /**
      * @Description: 根据父级菜单查询子菜单列表
@@ -51,12 +51,12 @@ public interface SystemMenuService extends IService<SystemMenu>{
      * @author xiahui
      * @date 2018年11月15日 下午5:36:58
      */
-    List<MenuNode> getMenuTree();
+    List<MenuNode> queryMenuTree();
     
     /**
      * @Description: 主页面菜单树形模型，需更据用户角色过滤
      * @author xiahui
      * @date 2018年11月15日 下午8:09:20
      */
-    List<MenuNode> getMenuTreeByRoleId(@Param("roleId") Integer roleId);
+    List<MenuNode> queryMenuTreeByRoleId(@Param("roleId") Integer roleId);
 }

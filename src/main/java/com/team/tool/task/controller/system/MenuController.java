@@ -48,7 +48,7 @@ public class MenuController {
     @PostMapping(value = "/list.action")
     @ApiOperation(value = "菜单列表查询")
     public RespData list(@RequestBody(required=false) SystemMenuQueryCondition condition) {
-        List<Map<String, Object>> parentList = this.systemMenuService.parentMenuList();
+        List<Map<String, Object>> parentList = this.systemMenuService.queryParentMenuList();
         return RespData.getRespData(true, new SystemMenuWarpper(parentList).warp(), "");
     }
 	
@@ -60,7 +60,7 @@ public class MenuController {
 	@ApiOperation(value = "首页菜单树")
     public RespData curUserMenuNode() {
     	SecurityUser securityUser = SecuritySupport.getSecurityUser();
-        List<MenuNode> menuNodeList = systemMenuService.getMenuTreeByRoleId(securityUser.getUserRoleId());
+        List<MenuNode> menuNodeList = systemMenuService.queryMenuTreeByRoleId(securityUser.getUserRoleId());
         List<MenuNode> menuTree = (List<MenuNode>) MenuNode.buildTree(menuNodeList);
         return RespData.getRespData(true, menuTree, "");
     }

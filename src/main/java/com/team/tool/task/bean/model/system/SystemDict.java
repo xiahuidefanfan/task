@@ -9,6 +9,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -26,7 +27,8 @@ import io.swagger.annotations.ApiModelProperty;
  *-------------------------------------------------------------*
  * 2018年11月19日     xiahui           v1.0.0           系统字典
  */
-public class SystemDict extends Model<SystemRole>{
+@TableName("sys_dict")
+public class SystemDict extends Model<SystemDict>{
 	
 	private static final long serialVersionUID = 1L;
 
@@ -40,11 +42,11 @@ public class SystemDict extends Model<SystemRole>{
 	
 	@TableId(value="dict_name")
 	@ApiModelProperty(value = "字段名称")
-	private Integer dictName;
+	private String dictName;
 	
 	@TableId(value="dict_code")
 	@ApiModelProperty(value = "字典编码")
-	private Integer dictCode;
+	private String dictCode;
 	
 	@TableId(value="dict_order")
 	@ApiModelProperty(value = "字典排序")
@@ -82,19 +84,19 @@ public class SystemDict extends Model<SystemRole>{
 		this.dictPid = dictPid;
 	}
 
-	public Integer getDictName() {
+	public String getDictName() {
 		return dictName;
 	}
 
-	public void setDictName(Integer dictName) {
+	public void setDictName(String dictName) {
 		this.dictName = dictName;
 	}
 
-	public Integer getDictCode() {
+	public String getDictCode() {
 		return dictCode;
 	}
 
-	public void setDictCode(Integer dictCode) {
+	public void setDictCode(String dictCode) {
 		this.dictCode = dictCode;
 	}
 

@@ -36,7 +36,7 @@ public class SystemUserServiceTest {
 	
 	@Test
 	public void list() {
-		List<Map<String, Object>> userList = systemUserService.list(null);
+		List<Map<String, Object>> userList = systemUserService.queryList(null);
 		System.out.println(userList);
 	}
 	

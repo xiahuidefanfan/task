@@ -29,7 +29,7 @@ import io.swagger.annotations.ApiModelProperty;
  * 2018年11月19日     xiahui           v1.0.0             系统菜单
  */
 @TableName("sys_menu")
-public class SystemMenu extends Model<SystemRole> implements GrantedAuthority {
+public class SystemMenu extends Model<SystemMenu> implements GrantedAuthority {
 
 	private static final long serialVersionUID = 1L;
 	
