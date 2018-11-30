@@ -38,8 +38,17 @@
 	   	WHERE 
 	   		1 = 1
        	ORDER BY
-			sysm.update_time 
-		DESC
+			sysm.menu_order ASC, sysm.update_time DESC
+	</select>
+	
+    <!-- 根据菜单编号获取菜单实体  -->
+    <select id="queryMenuByCode" resultMap="BaseResultMap">
+	    SELECT
+    		<include refid="Base_Column_List" /> 
+	   	FROM 
+	   		sys_menu AS sysm
+	   	WHERE 
+	   		sysm.menu_code = #{menuCode}
 	</select>
 	
    	<!-- 查询父级菜单列表  -->
@@ -55,8 +64,7 @@
 	   	WHERE 
 	   		sysm.menu_pcode = '0'
        	ORDER BY
-			sysm.update_time 
-		DESC
+			sysm.menu_order ASC, sysm.update_time DESC
 	</select>
 	
   	<!-- 根据父级菜单查询子菜单列表  -->
@@ -80,7 +88,7 @@
     	SELECT 
     		sysm.menu_id AS menuId
 		FROM 
-			sys_relation AS sysr INNER JOIN sys_menu AS sysm ON sysr.menu_id = sysm.menu_id 
+			sys_relation AS sysr INNER JOIN sys_menu AS sysm ON sysr.menu_id = sysm.menu_id AND sysm.menu_status = '1'
 		WHERE 
 			sysr.role_id = #{roleId} 
     </select>
@@ -97,6 +105,7 @@
 	   		<foreach collection="menuIds" index="index" item="id" open="(" separator="," close=")">  
           		#{id}  
         	</foreach>
+        AND sysm.menu_status = '1'
        	ORDER BY
 			sysm.update_time 
 		DESC
@@ -107,7 +116,7 @@
 	    SELECT
 	    	sysm1.menu_id AS id,
         	sysm1.menu_code AS code,
-        	sysm1.menu_code AS pcode,
+        	sysm2.menu_code AS pcode,
         	sysm1.menu_name AS name
         FROM
         	sys_menu AS sysm1
@@ -116,12 +125,13 @@
         ON 
         	sysm1.menu_pcode = sysm2.menu_code
         WHERE 
-        	sysm1.menu_is_menu = 1
+        	sysm1.menu_is_menu = '1'
+        AND sysm1.menu_status = '1'
         ORDER BY 
-        	sysm1.menu_order ASC
+        	sysm1.menu_order ASC, sysm1.update_time DESC
 	</select>
 	
-		<!--主页面菜单树形模型，需更据用户角色过滤 -->
+	<!--主页面菜单树形模型，需更据用户角色过滤 -->
 	<select id="queryMenuTreeByRoleId" resultType="com.team.tool.task.bean.node.MenuNode">
        SELECT
 		  sysm1.menu_id AS id,
@@ -136,17 +146,19 @@
 		FROM
 		  sys_menu AS sysm1 
 		LEFT JOIN sys_menu AS sysm2 ON sysm1.menu_pcode = sysm2.menu_code
-        INNER JOIN (
+        INNER JOIN 
+       			(
         			SELECT menu_id
 		    		FROM sys_menu
 		    		WHERE menu_id 
 		    		IN (
 		    			SELECT menu_id FROM  sys_relation AS sysr
 				     	WHERE sysr.role_id = #{roleId}
-			     	)
-			     	) AS sysm3 ON sysm1.menu_id = sysm3.menu_id
-		WHERE sysm1.menu_is_menu = 1
-		ORDER BY sysm1.menu_order ASC
+		     	)
+	     	) AS sysm3 ON sysm1.menu_id = sysm3.menu_id
+		WHERE sysm1.menu_is_menu = '1'
+		AND sysm1.menu_status = '1'
+		ORDER BY sysm1.menu_order ASC, sysm1.update_time DESC
     </select>
     
 </mapper>

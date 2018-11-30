@@ -25,6 +25,10 @@ public class SystemException extends RuntimeException{
      */
     private int code;
     
+    public SystemException(String message) {
+    	super(message);
+    }
+    
     public SystemException(ErrorCodeEnum codeEnum, Object... args) {
         super(StringUtil.parseString(codeEnum.msg(), args));
         this.code = codeEnum.getCode();

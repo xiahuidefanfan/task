@@ -1,10 +1,11 @@
 package com.team.tool.task.bean.model.system;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
 
 import com.baomidou.mybatisplus.activerecord.Model;
@@ -39,6 +40,7 @@ public class SystemMenu extends Model<SystemMenu> implements GrantedAuthority {
 	
 	@TableField(value="menu_code")
 	@ApiModelProperty(value = "菜单编号")
+	@NotBlank(message = "菜单编号不可为空")
 	private String menuCode;
 	
 	@TableField(value="menu_pcode")
@@ -51,6 +53,7 @@ public class SystemMenu extends Model<SystemMenu> implements GrantedAuthority {
 	
 	@TableField(value="menu_name")
 	@ApiModelProperty(value = "菜单名称")
+	@NotBlank(message = "菜单名称不可为空")
 	private String menuName;
 	
 	@TableField(value="menu_icon")
@@ -75,7 +78,7 @@ public class SystemMenu extends Model<SystemMenu> implements GrantedAuthority {
 	
 	@TableField(value="creator")
 	@ApiModelProperty(value = "创建人")
-	private String creator;
+	private Integer creator;
 	
 	@TableField(value="updator")
 	@ApiModelProperty(value = "修改人")
@@ -83,11 +86,11 @@ public class SystemMenu extends Model<SystemMenu> implements GrantedAuthority {
    
 	@TableField(value="create_time")
 	@ApiModelProperty(value = "创建时间")
-	private Date createTime;
+	private Timestamp createTime;
 	
 	@TableField(value="update_time")
 	@ApiModelProperty(value = "修改时间")
-	private Date updateTime;
+	private Timestamp updateTime;
 	
 	public Integer getMenuId() {
 		return menuId;
@@ -169,11 +172,11 @@ public class SystemMenu extends Model<SystemMenu> implements GrantedAuthority {
 		this.menuStatus = menuStatus;
 	}
 
-	public String getCreator() {
+	public Integer getCreator() {
 		return creator;
 	}
 
-	public void setCreator(String creator) {
+	public void setCreator(Integer creator) {
 		this.creator = creator;
 	}
 
@@ -185,19 +188,19 @@ public class SystemMenu extends Model<SystemMenu> implements GrantedAuthority {
 		this.updator = updator;
 	}
 
-	public Date getCreateTime() {
+	public Timestamp getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(Date createTime) {
+	public void setCreateTime(Timestamp createTime) {
 		this.createTime = createTime;
 	}
 
-	public Date getUpdateTime() {
+	public Timestamp getUpdateTime() {
 		return updateTime;
 	}
 
-	public void setUpdateTime(Date updateTime) {
+	public void setUpdateTime(Timestamp updateTime) {
 		this.updateTime = updateTime;
 	}
 	

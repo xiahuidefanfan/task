@@ -1,10 +1,12 @@
 package com.team.tool.task.bean.model.system;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
@@ -42,15 +44,17 @@ public class SystemRole extends Model<SystemRole> {
 	
 	@TableField(value="role_name")
 	@ApiModelProperty(value = "角色名称")
+	@NotBlank(message = "角色名称不可为空")
 	private String roleName;
 	
 	@TableField(value="role_order")
 	@ApiModelProperty(value = "角色排序")
 	private Integer roleOrder;
 	
-	@TableField(value="role_desc")
-	@ApiModelProperty(value = "角色描述")
-	private String roleDesc;
+	@TableField(value="role_code")
+	@ApiModelProperty(value = "角色编码")
+	@NotBlank(message = "角色编码不可为空")
+	private String roleCode;
 	
 	@TableField(value="creator")
 	@ApiModelProperty(value = "创建人")
@@ -62,11 +66,11 @@ public class SystemRole extends Model<SystemRole> {
    
 	@TableField(value="create_time")
 	@ApiModelProperty(value = "创建时间")
-	private Date createTime;
+	private Timestamp createTime;
 	
 	@TableField(value="update_time")
 	@ApiModelProperty(value = "修改时间")
-	private Date updateTime;
+	private Timestamp updateTime;
 	
 	public Integer getRoleId() {
 		return roleId;
@@ -100,12 +104,12 @@ public class SystemRole extends Model<SystemRole> {
 		this.roleOrder = roleOrder;
 	}
 
-	public String getRoleDesc() {
-		return roleDesc;
+	public String getRoleCode() {
+		return roleCode;
 	}
 
-	public void setRoleDesc(String roleDesc) {
-		this.roleDesc = roleDesc;
+	public void setRoleCode(String roleCode) {
+		this.roleCode = roleCode;
 	}
 
 	public String getCreator() {
@@ -128,7 +132,7 @@ public class SystemRole extends Model<SystemRole> {
 		return createTime;
 	}
 
-	public void setCreateTime(Date createTime) {
+	public void setCreateTime(Timestamp createTime) {
 		this.createTime = createTime;
 	}
 
@@ -136,7 +140,7 @@ public class SystemRole extends Model<SystemRole> {
 		return updateTime;
 	}
 
-	public void setUpdateTime(Date updateTime) {
+	public void setUpdateTime(Timestamp updateTime) {
 		this.updateTime = updateTime;
 	}
 	
@@ -145,10 +149,9 @@ public class SystemRole extends Model<SystemRole> {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
 	}
 
-
 	@Override
 	protected Serializable pkVal() {
-		return null;
+		return roleId;
 	}
 
 }

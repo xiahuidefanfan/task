@@ -1,7 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team.tool.task.dao.system.SystemRoleMapper">
-    <select id="queryList" resultType="map">
-        select * from sys_role
-    </select>
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.team.tool.task.bean.model.system.SystemRole">
+		<id property="roleId" column="role_id" />
+        <result property="rolePid" column="role_pid" />
+        <result property="roleName" column="role_name" />
+        <result property="roleOrder" column="role_order" />
+        <result property="roleDesc" column="role_desc" />
+        <result property="createTime" column="create_time" />
+        <result property="updateTime" column="update_time" />
+        <result property="creator" column="creator" />
+        <result property="updator" column="updator" />
+	</resultMap>
+	
+	<!-- 菜单表字段 -->
+    <sql id="Base_Column_List">
+        role_id, role_pid, role_name, role_order, role_desc, create_time, update_time, creator, updator
+    </sql>
+    
+    <!-- 根据条件查询角色列表  -->
+    <select id="queryList" resultType="map" parameterType="com.baomidou.mybatisplus.plugins.Page">
+		SELECT
+			sysr.role_id AS roleId, sysr.role_pid AS rolePid, IFNULL(sysri.role_name, "#") AS pRoleName, sysr.role_name AS roleName, sysr.role_order AS roleOrder, sysr.role_code AS roleCode, sysr.create_time AS createTime, 
+			 sysr.update_time AS updateTime, sysr.creator AS creator, sysuc.user_realName AS creatorName, sysr.updator AS updator, sysuu.user_realName AS updatorName
+		FROM 
+			sys_role AS sysr
+		LEFT JOIN sys_role AS sysri ON sysr.role_pid = sysri.role_id
+		LEFT JOIN sys_user sysuc ON sysr.creator = sysuc.user_id
+		LEFT JOIN sys_user sysuu ON sysr.updator = sysuu.user_id
+		WHERE 
+			1 = 1
+		ORDER BY
+			sysr.role_order ASC, sysr.update_time DESC
+	</select>
+	
+	<!--角色树形模型 -->
+	 <select id="queryRoleTree" resultType="com.team.tool.task.bean.node.RoleNode">
+	    SELECT
+	    	sysr1.role_id AS id,
+        	sysr1.role_code AS code,
+        	sysr2.role_id AS pid,
+        	sysr1.role_name AS name
+        FROM
+        	sys_role AS sysr1
+        LEFT JOIN 
+        	sys_role AS sysr2
+        ON 
+        	sysr1.role_pid = sysr2.role_id
+        ORDER BY 
+        	sysr1.role_order ASC, sysr1.update_time DESC
+	</select>
 </mapper>

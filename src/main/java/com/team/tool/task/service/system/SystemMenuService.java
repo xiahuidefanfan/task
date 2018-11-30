@@ -3,10 +3,8 @@ package com.team.tool.task.service.system;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.baomidou.mybatisplus.service.IService;
-import com.team.tool.task.bean.condition.SystemMenuQueryCondition;
+import com.team.tool.task.bean.condition.system.SystemMenuQueryCondition;
 import com.team.tool.task.bean.model.system.SystemMenu;
 import com.team.tool.task.bean.node.MenuNode;
 
@@ -30,7 +28,14 @@ public interface SystemMenuService extends IService<SystemMenu>{
      * @author xiahui
      * @date 2018年11月16日 下午16:37:15
      */
-    List<Map<String, Object>> queryList(@Param("condition") SystemMenuQueryCondition condition);
+    List<Map<String, Object>> queryList(SystemMenuQueryCondition condition);
+    
+    /**
+     * @Description: 根据菜单编号获取菜单实体
+     * @author: xiahui
+     * @date: 2018年11月27日 下午3:46:34
+     */
+    SystemMenu queryMenuByCode(String menuCode);
     
     /**
      * @Description: 查询父级菜单列表 
@@ -46,7 +51,7 @@ public interface SystemMenuService extends IService<SystemMenu>{
      */
     List<Map<String, Object>> queryMenuListByParent(String pcode);
 
-	 /**
+	/**
      * @Description: 主页面菜单树形模型
      * @author xiahui
      * @date 2018年11月15日 下午5:36:58
@@ -58,5 +63,5 @@ public interface SystemMenuService extends IService<SystemMenu>{
      * @author xiahui
      * @date 2018年11月15日 下午8:09:20
      */
-    List<MenuNode> queryMenuTreeByRoleId(@Param("roleId") Integer roleId);
+    List<MenuNode> queryMenuTreeByRoleId(Integer roleId);
 }

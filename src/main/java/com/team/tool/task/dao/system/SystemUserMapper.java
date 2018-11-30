@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.team.tool.task.bean.condition.SystemUserQueryCondition;
+import com.team.tool.task.bean.condition.system.SystemUserQueryCondition;
 import com.team.tool.task.bean.model.system.SystemUser;
 
 /**
@@ -20,7 +20,7 @@ import com.team.tool.task.bean.model.system.SystemUser;
  * Modification History:
  * Date         Author          Version            Description
  *-------------------------------------------------------------*
- * 2018年11月12日     xiahui           v1.0.0             系统用户dao层
+ * 2018年11月12日     xiahui           v1.0.0          系统用户dao层
  */
 public interface SystemUserMapper extends BaseMapper<SystemUser>{
 

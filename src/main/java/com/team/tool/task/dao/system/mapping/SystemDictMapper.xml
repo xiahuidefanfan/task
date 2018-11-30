@@ -16,7 +16,8 @@
     
      <!-- 字典表字段 -->
     <sql id="Base_Column_List">
-        dict_id, dict_pid, dict_name, dict_code, dict_order, create_time, update_time, creator, updator
+        dict_id AS dictId, dict_pid AS dicPid, dict_name AS dictName, dict_code AS dictCode, dict_order AS dictOrder, create_time AS createTime, 
+        update_time AS updateTime, creator AS creator, updator AS updator
     </sql>
    
      <!-- 根据条件查询字典 -->
@@ -31,4 +32,19 @@
         WHERE 
         	1 = 1
     </select>
+    
+    <select id="queryDictByParentCode" resultType="map">
+       SELECT
+		  <include refid="Base_Column_List" /> 
+		FROM
+		  sys_dict AS sysd
+		WHERE sysd.dict_pid = 
+		  (SELECT
+		    dict_id
+		   FROM
+		    sys_dict
+		   WHERE dict_code = #{code})
+		ORDER BY sysd.dict_order ASC
+    </select>
+    
 </mapper>

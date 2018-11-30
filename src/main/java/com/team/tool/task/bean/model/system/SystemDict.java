@@ -1,6 +1,7 @@
 package com.team.tool.task.bean.model.system;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -62,11 +63,11 @@ public class SystemDict extends Model<SystemDict>{
    
 	@TableField(value="create_time")
 	@ApiModelProperty(value = "创建时间")
-	private Date createTime;
+	private Timestamp createTime;
 	
 	@TableField(value="update_time")
 	@ApiModelProperty(value = "修改时间")
-	private Date updateTime;
+	private Timestamp updateTime;
 	
 	public Integer getDictId() {
 		return dictId;
@@ -128,7 +129,7 @@ public class SystemDict extends Model<SystemDict>{
 		return createTime;
 	}
 
-	public void setCreateTime(Date createTime) {
+	public void setCreateTime(Timestamp createTime) {
 		this.createTime = createTime;
 	}
 
@@ -136,7 +137,7 @@ public class SystemDict extends Model<SystemDict>{
 		return updateTime;
 	}
 
-	public void setUpdateTime(Date updateTime) {
+	public void setUpdateTime(Timestamp updateTime) {
 		this.updateTime = updateTime;
 	}
 

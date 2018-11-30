@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.team.tool.task.bean.condition.SystemMenuQueryCondition;
+import com.team.tool.task.bean.condition.system.SystemMenuQueryCondition;
 import com.team.tool.task.bean.model.system.SystemMenu;
 import com.team.tool.task.bean.node.MenuNode;
 import com.team.tool.task.dao.system.SystemMenuMapper;
@@ -32,6 +32,11 @@ public class SystemMenuServiceImpl extends ServiceImpl<SystemMenuMapper, SystemM
 	@Override
 	public List<Map<String, Object>> queryList(SystemMenuQueryCondition condition) {
 		return this.baseMapper.queryList(condition);
+	}
+	
+	@Override
+	public SystemMenu queryMenuByCode(String menuCode) {
+		return this.baseMapper.queryMenuByCode(menuCode);
 	}
 	
 	@Override

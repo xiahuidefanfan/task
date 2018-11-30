@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 
 import com.baomidou.mybatisplus.service.IService;
-import com.team.tool.task.bean.condition.SystemUserQueryCondition;
+import com.team.tool.task.bean.condition.system.SystemUserQueryCondition;
 import com.team.tool.task.bean.model.system.SystemUser;
 
 /**
@@ -24,7 +24,7 @@ import com.team.tool.task.bean.model.system.SystemUser;
  */
 public interface SystemUserService extends IService<SystemUser>{
 	
-	 /**
+	/**
      * @Description: 根据条件查询用户
      * @author xiahui
      * @date 2018年11月12日 上午10:27:15

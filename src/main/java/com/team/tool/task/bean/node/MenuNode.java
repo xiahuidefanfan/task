@@ -18,7 +18,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class MenuNode extends TreeNode{
 	
-	  /**
+	/**
      * 菜单code
      */
     private String code;

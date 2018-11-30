@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiOperation;
 
 /**
  * @ClassName: UserController.java
- * @Description: user操作controller
+ * @Description: 用户控制器
  *
  * @version: v1.0.0
  * @author: xiahui
@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiOperation;
  * Modification History:
  * Date         Author          Version            Description
  *------------------------------------------------------------*
- * 2018年11月11日     xiahui           v1.0.0              创建项目
+ * 2018年11月11日     xiahui           v1.0.0            创建项目
  */
 @RestController
 @RequestMapping("/user")
