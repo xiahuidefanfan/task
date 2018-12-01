@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.team.tool.task.bean.condition.system.SystemDictQueryCondition;
 import com.team.tool.task.bean.model.system.SystemDict;
@@ -30,6 +31,11 @@ public class SystemDictServiceImpl extends ServiceImpl<SystemDictMapper, SystemD
 	@Override
 	public List<Map<String, Object>> queryList(SystemDictQueryCondition condition) {
 		return this.baseMapper.queryList(condition);
+	}
+	
+	@Override
+	public List<Map<String, Object>> queryParentDictList(Page<SystemDict> page, SystemDictQueryCondition condition){
+		return this.baseMapper.queryParentDictList(page, condition);
 	}
 	
 	@Override

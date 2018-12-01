@@ -3,8 +3,7 @@ package com.team.tool.task.service.system;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
-
+import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.IService;
 import com.team.tool.task.bean.condition.system.SystemDictQueryCondition;
 import com.team.tool.task.bean.model.system.SystemDict;
@@ -29,13 +28,20 @@ public interface SystemDictService extends IService<SystemDict>{
    * @author: xiahui
    * @date: 2018年11月23日 下午2:49:06
    */
-   List<Map<String, Object>> queryList(@Param("condition") SystemDictQueryCondition condition);
+   List<Map<String, Object>> queryList(SystemDictQueryCondition condition);
+   
+   /**
+	* @Description: 查询父级字典列表 
+	* @author: xiahui
+	* @date: 2018年12月1日 下午3:09:47
+	*/
+   List<Map<String, Object>> queryParentDictList(Page<SystemDict> page, SystemDictQueryCondition condition);
    
    /**
     * @Description: 根据父级字典编码查询子级字典
     * @author: xiahui
     * @date: 2018年11月26日 下午4:22:06
     */
-   List<Map<String, Object>> queryDictByParentCode(@Param("code") String code); 
+   List<Map<String, Object>> queryDictByParentCode(String code); 
 
 }

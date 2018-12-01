@@ -31,12 +31,15 @@
 		LEFT JOIN sys_user sysuu ON sysr.updator = sysuu.user_id
 		WHERE 
 			1 = 1
+		<if test="condition.roleName != null and condition.roleName != ''">
+			and sysr.role_name like CONCAT('%',#{condition.roleName},'%')
+		</if>
 		ORDER BY
 			sysr.role_order ASC, sysr.update_time DESC
 	</select>
 	
 	<!--角色树形模型 -->
-	 <select id="queryRoleTree" resultType="com.team.tool.task.bean.node.RoleNode">
+	<select id="queryRoleTree" resultType="com.team.tool.task.bean.node.RoleNode">
 	    SELECT
 	    	sysr1.role_id AS id,
         	sysr1.role_code AS code,
@@ -51,4 +54,11 @@
         ORDER BY 
         	sysr1.role_order ASC, sysr1.update_time DESC
 	</select>
+	
+	<!-- 删除角色权限 -->
+	<delete id="deleteRolesById">
+		DELETE FROM 
+			sys_relation 
+		WHERE role_id = #{roleId}
+	</delete>
 </mapper>

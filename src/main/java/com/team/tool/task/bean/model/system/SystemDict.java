@@ -6,6 +6,7 @@ import java.util.Date;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
@@ -37,25 +38,27 @@ public class SystemDict extends Model<SystemDict>{
 	@ApiModelProperty(value = "主键id")
 	private Integer dictId;
 	
-	@TableId(value="dict_pid")
+	@TableField(value="dict_pid")
 	@ApiModelProperty(value = "父级主键")
 	private Integer dictPid;
 	
-	@TableId(value="dict_name")
-	@ApiModelProperty(value = "字段名称")
+	@TableField(value="dict_name")
+	@ApiModelProperty(value = "字典名称")
+	@NotBlank(message = "字典编号不可为空")
 	private String dictName;
 	
-	@TableId(value="dict_code")
+	@TableField(value="dict_code")
 	@ApiModelProperty(value = "字典编码")
+	@NotBlank(message = "字典编号不可为空")
 	private String dictCode;
 	
-	@TableId(value="dict_order")
+	@TableField(value="dict_order")
 	@ApiModelProperty(value = "字典排序")
 	private Integer dictOrder;
 	
 	@TableField(value="creator")
 	@ApiModelProperty(value = "创建人")
-	private String creator;
+	private Integer creator;
 	
 	@TableField(value="updator")
 	@ApiModelProperty(value = "修改人")
@@ -109,11 +112,11 @@ public class SystemDict extends Model<SystemDict>{
 		this.dictOrder = dictOrder;
 	}
 	
-	public String getCreator() {
+	public Integer getCreator() {
 		return creator;
 	}
 
-	public void setCreator(String creator) {
+	public void setCreator(Integer creator) {
 		this.creator = creator;
 	}
 
@@ -150,5 +153,4 @@ public class SystemDict extends Model<SystemDict>{
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
 	}
-
 }

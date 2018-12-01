@@ -58,7 +58,7 @@ public class SystemRole extends Model<SystemRole> {
 	
 	@TableField(value="creator")
 	@ApiModelProperty(value = "创建人")
-	private String creator;
+	private Integer creator;
 	
 	@TableField(value="updator")
 	@ApiModelProperty(value = "修改人")
@@ -112,11 +112,11 @@ public class SystemRole extends Model<SystemRole> {
 		this.roleCode = roleCode;
 	}
 
-	public String getCreator() {
+	public Integer getCreator() {
 		return creator;
 	}
 
-	public void setCreator(String creator) {
+	public void setCreator(Integer creator) {
 		this.creator = creator;
 	}
 

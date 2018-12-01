@@ -160,11 +160,37 @@ public class MenuController {
      * @date: 2018年11月27日 下午4:42:34
      */
 	@SuppressWarnings("unchecked")
-	@GetMapping(value = "/curUserMenuNode.action")
+	@GetMapping(value = "/queryCurUserMenuNode.action")
 	@ApiOperation(value = "首页菜单树")
-    public RespData curUserMenuNode() {
+    public RespData queryCurUserMenuNode() {
     	SecurityUser securityUser = SecuritySupport.getSecurityUser();
         List<MenuNode> menuNodeList = systemMenuService.queryMenuTreeByRoleId(securityUser.getUserRoleId());
+        List<MenuNode> menuTree = (List<MenuNode>) MenuNode.buildTree(menuNodeList);
+        return RespData.getRespData(true, menuTree, "");
+    }
+	
+	/**
+	 * @Description: 获取当前角色权限列表(授权用)
+	 * @author: xiahui
+	 * @date: 2018年12月1日 下午1:39:36
+	 */
+	@PostMapping(value = "/queryCurRoleAuthority.action")
+	@ApiOperation(value = "获取当前角色权限列表")
+    public RespData queryCurRoleAuthority(@RequestParam Integer roleId) {
+        List<MenuNode> menuNodeList = systemMenuService.queryMenuTreeByRoleId(roleId);
+        return RespData.getRespData(true, menuNodeList, "");
+    }
+	
+	 /**
+     * @Description: 获取菜单列表(授权用)
+     * @author: xiahui
+     * @date: 2018年12月01日 下午1:16:34
+     */
+	@SuppressWarnings("unchecked")
+	@GetMapping(value = "/queryMenuTree.action")
+	@ApiOperation(value = "查询菜单树")
+    public RespData queryMenuTree() {
+        List<MenuNode> menuNodeList = systemMenuService.queryMenuTree();
         List<MenuNode> menuTree = (List<MenuNode>) MenuNode.buildTree(menuNodeList);
         return RespData.getRespData(true, menuTree, "");
     }

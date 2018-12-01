@@ -3,13 +3,17 @@ package com.team.tool.task.service.system.impl;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.team.tool.task.bean.condition.system.SystemRoleQueryCondition;
+import com.team.tool.task.bean.model.system.SystemRelation;
 import com.team.tool.task.bean.model.system.SystemRole;
 import com.team.tool.task.bean.node.RoleNode;
+import com.team.tool.task.dao.system.SystemRelationMapper;
 import com.team.tool.task.dao.system.SystemRoleMapper;
 import com.team.tool.task.service.system.SystemRoleService;
 
@@ -29,21 +33,32 @@ import com.team.tool.task.service.system.SystemRoleService;
 @Service
 public class SystemRoleServiceImpl extends ServiceImpl<SystemRoleMapper, SystemRole> implements SystemRoleService{
 	
-	/**
-     * @Description: 获取分页角色
-     * @author xiahui
-     * @date 2018年11月29日 上午09:51:37
-     */
+	@Autowired
+    private SystemRelationMapper syatemRelationMapper;
+	
+	@Override
     public List<Map<String, Object>> queryList(Page<SystemRole> page, SystemRoleQueryCondition condition){
     	return this.baseMapper.queryList(page, condition);
     }
     
-    /**
-     * @Description: 角色树形模型
-     * @author xiahui
-     * @date 2018年11月29日 下午4:54:58
-     */
+    @Override
     public List<RoleNode> queryRoleTree(){
     	return this.baseMapper.queryRoleTree();
+    }
+    
+    @Override
+    @Transactional(readOnly = false)
+    public void setAuthority(String roleId, String ids) {
+        // 删除该角色所有的权限
+        this.baseMapper.deleteRolesById(roleId);
+
+        // 添加新的权限
+        String[] idArr = ids.split(",");
+        for (String id : idArr) {
+        	SystemRelation relation = new SystemRelation();
+            relation.setRoleId(Integer.valueOf(roleId));
+            relation.setMenuId(Integer.valueOf(id));
+            this.syatemRelationMapper.insert(relation);
+        }
     }
 }

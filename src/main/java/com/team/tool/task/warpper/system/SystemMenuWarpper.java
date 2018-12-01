@@ -39,7 +39,7 @@ public class SystemMenuWarpper extends BaseControllerWarpper{
 		 */
 		String menuPcode = String.valueOf(map.get("menuCode"));
 		List<Map<String, Object>> childrens = ConstantFactory.me().queryMenuListByParent(menuPcode);
-		map.put("childrens", new SystemMenuWarpper(childrens).warp());
+		map.put("childrens", childrens);
 		
 		/**
 		 * 设置字典名称

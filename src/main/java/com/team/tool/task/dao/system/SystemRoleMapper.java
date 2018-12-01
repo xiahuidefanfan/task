@@ -40,4 +40,18 @@ public interface SystemRoleMapper extends BaseMapper<SystemRole>{
      */
     List<RoleNode> queryRoleTree();
     
+    /**
+     * @Description: 删除某个角色的所有权限
+     * @author: xiahui
+     * @date: 2018年12月1日 下午2:14:16
+     */
+    int deleteRolesById(@Param("roleId") String roleId);
+    
+    /**
+     * @Description: 设置某个角色的权限
+     * @author: xiahui
+     * @date: 2018年12月1日 下午2:11:29
+     */
+    void setAuthority(@Param("roleId")String roleId, @Param("ids")String ids);
+    
 }

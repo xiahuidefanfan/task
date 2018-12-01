@@ -46,7 +46,17 @@ public class ConstantFactory{
     */
    @Cacheable(value = Cache.SYSTEM_DICT, key = "'" + CacheKey.DICT + "'")
    public List<Map<String, Object>> queryAllDicts() {
-		return this.systemDictMapper.queryList(null);
+	   return this.systemDictMapper.queryList(null);
+   }
+   
+   /**
+    * 
+    * @Description: 根据父级字典编码查询子级字典
+    * @author: xiahui
+    * @date: 2018年12月1日 下午3:20:39
+    */
+   public List<Map<String, Object>> queryDictByParentCode(String dictCode) {
+	   return this.systemDictMapper.queryDictByParentCode(dictCode);
    }
    
    /**

@@ -36,4 +36,11 @@ public interface SystemRoleService extends IService<SystemRole>{
      * @date 2018年11月29日 下午4:54:58
      */
     List<RoleNode> queryRoleTree();
+    
+    /**
+     * @Description: 设置某个角色的权限
+     * @author: xiahui
+     * @date: 2018年12月1日 下午2:11:29
+     */
+    void setAuthority(String roleId, String ids);
 }
