@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.team.tool.task.common.support.WebDateSupport;
 import com.team.tool.task.service.security.SystemUserDetailServiceImpl;
 
 /**
@@ -46,6 +47,12 @@ public class SecurityBeanConfig {
 	@ConditionalOnMissingBean(UserDetailsService.class)
 	public UserDetailsService userDetailsService() {
 		return new SystemUserDetailServiceImpl();
+	}
+	
+	@Bean
+	@ConditionalOnMissingBean(WebDateSupport.class)
+	public WebDateSupport webDateSupport(){
+		return new WebDateSupport();
 	}
 
 }

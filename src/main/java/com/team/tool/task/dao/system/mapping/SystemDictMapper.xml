@@ -16,15 +16,15 @@
     
      <!-- 字典表字段 -->
     <sql id="Base_Column_List">
-        dict_id AS dictId, dict_pid AS dictPid, dict_name AS dictName, dict_code AS dictCode, dict_order AS dictOrder, create_time AS createTime, 
-        update_time AS updateTime, creator AS creator, updator AS updator
+        sysd.dict_id AS dictId, sysd.dict_pid AS dictPid, sysd.dict_name AS dictName, sysd.dict_code AS dictCode, sysd.dict_order AS dictOrder, 
+     	sysd.create_time AS createTime, sysd.update_time AS updateTime, sysd.creator AS creator, sysuc.user_realName AS creatorName, sysd.updator AS updator, 
+      	sysuu.user_realName AS updatorName
     </sql>
    
     <!-- 根据条件查询字典 -->
     <select id="queryList" resultType="map">
         SELECT 
-       		sysd.dict_id AS dictId, sysd.dict_pid AS dictPid, sysd.dict_name AS dictName, sysd.dict_code AS dictCode, sysd.dict_order AS dictOrder, 
-       		sysd.create_time AS createTime, sysd.update_time AS updateTime, sysuc.user_realName AS creator, sysuu.user_realName AS updator
+       		<include refid="Base_Column_List" /> 
         FROM 
         	sys_dict AS sysd 
         LEFT JOIN sys_user sysuc ON sysd.creator = sysuc.user_id
@@ -36,25 +36,31 @@
     <!-- 根据条件查询字典 -->
     <select id="queryParentDictList" resultType="map">
         SELECT 
-       		sysd.dict_id AS dictId, sysd.dict_pid AS dictPid, sysd.dict_name AS dictName, sysd.dict_code AS dictCode, sysd.dict_order AS dictOrder, 
-       		sysd.create_time AS createTime, sysd.update_time AS updateTime, sysd.creator AS creator, sysuc.user_realName AS creatorName, sysd.updator AS updator, 
-       		sysuu.user_realName AS updatorName
+       		<include refid="Base_Column_List" /> 
         FROM 
         	sys_dict AS sysd 
         LEFT JOIN sys_user sysuc ON sysd.creator = sysuc.user_id
         LEFT JOIN sys_user sysuu ON sysd.updator = sysuu.user_id
         WHERE 
         	1 = 1
+       	<if test="condition.dictName != null and condition.dictName != ''">
+			and sysd.dict_name like CONCAT('%',#{condition.dictName},'%')
+		</if>
+       	<if test="condition.dictCode != null and condition.dictCode != ''">
+			and sysd.dict_code like CONCAT('%',#{condition.dictCode},'%')
+		</if>
         AND sysd.dict_pid = 0
         ORDER BY sysd.dict_order ASC
     </select>
     
     <select id="queryDictByParentCode" resultType="map">
     	SELECT
-		  <include refid="Base_Column_List" /> 
+		    <include refid="Base_Column_List" /> 
 		FROM
 	  		sys_dict AS sysd
-		WHERE 
+  	 	LEFT JOIN sys_user sysuc ON sysd.creator = sysuc.user_id
+        LEFT JOIN sys_user sysuu ON sysd.updator = sysuu.user_id
+	   	WHERE 
 	  		sysd.dict_pid = (
 	  			SELECT
 				    dict_id

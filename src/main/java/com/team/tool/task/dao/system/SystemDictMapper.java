@@ -12,7 +12,7 @@ import com.team.tool.task.bean.model.system.SystemDict;
 
 /**
  * @ClassName: SystemDictMapper.java
- * @Description: 系统字典dao层
+ * @Description: 系统字典mapper层
  *
  * @version: v1.0.0
  * @author: xiahui
@@ -21,7 +21,7 @@ import com.team.tool.task.bean.model.system.SystemDict;
  * Modification History:
  * Date         Author          Version            Description
  *-------------------------------------------------------------*
- * 2018年11月19日     xiahui           v1.0.0               修改原因
+ * 2018年11月19日     xiahui           v1.0.0        系统字典mapper层
  */
 public interface SystemDictMapper extends BaseMapper<SystemDict> {
 

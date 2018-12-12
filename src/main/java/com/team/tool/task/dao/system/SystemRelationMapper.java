@@ -6,7 +6,7 @@ import com.team.tool.task.bean.model.system.SystemRelation;
 /**
  * 
  * @ClassName: SystemRelationMapper.java
- * @Description: 角色和菜单关联-dao层
+ * @Description: 角色和菜单关联mapper层
  *
  * @version: v1.0.0
  * @author: xiahui
@@ -15,7 +15,7 @@ import com.team.tool.task.bean.model.system.SystemRelation;
  * Modification History:
  * Date         Author          Version            Description
  *-------------------------------------------------------------*
- * 2018年12月1日     xiahui           v1.0.0     角色和菜单关联-dao层
+ * 2018年12月1日     xiahui           v1.0.0     角色和菜单关联mapper层
  */
 public interface SystemRelationMapper extends BaseMapper<SystemRelation> {
 

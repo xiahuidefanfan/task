@@ -3,7 +3,6 @@ package com.team.tool.task.service.system.impl;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
@@ -55,7 +54,7 @@ public class SystemMenuServiceImpl extends ServiceImpl<SystemMenuMapper, SystemM
 	}
 	
 	@Override
-	public List<MenuNode> queryMenuTreeByRoleId(@Param("roleId") Integer roleId){
+	public List<MenuNode> queryMenuTreeByRoleId(Integer roleId){
 		return this.baseMapper.queryMenuTreeByRoleId(roleId);
 	}
 

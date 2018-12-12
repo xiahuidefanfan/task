@@ -1,5 +1,9 @@
 package com.team.tool.task.common.aop;
 
+import java.sql.SQLException;
+
+import org.apache.ibatis.ognl.NoSuchPropertyException;
+import org.apache.ibatis.reflection.ReflectionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
@@ -9,7 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.team.tool.task.common.exception.SystemException;
+import com.baomidou.mybatisplus.exceptions.MybatisPlusException;
 import com.team.tool.task.common.support.RespData;
 
 /**
@@ -26,20 +30,53 @@ import com.team.tool.task.common.support.RespData;
  * 2018年11月26日     xiahui           v1.0.0           异常拦截器
  */
 @ControllerAdvice
-@Order(1)
+@Order(-1)
 public class GlobalExceptionHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     /**
-     * 系统错误
+     * sql错误
      */
-    @ExceptionHandler(SystemException.class)
+    @ExceptionHandler({SQLException.class, MybatisPlusException.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public RespData systemExceptionHandler(SystemException e) {
-    	LOGGER.error(e.getMessage());
-        return RespData.getRespData(true, null, e.getMessage());
+    public RespData sqlExceptionHandler(Exception e) {
+    	LOGGER.error("数据库操作异常，异常信息为：{}", e.getMessage());
+    	return RespData.getRespData(true, null, "系统异常，请联系技术人员！");
+    }
+    
+    /**
+     * 空指针错误
+     */
+    @ExceptionHandler(NullPointerException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public RespData nullPointerException(NullPointerException e) {
+    	LOGGER.error("控制针异常，异常信息为：{}", e.getMessage());
+    	return RespData.getRespData(true, null, "系统异常，请联系技术人员！");
+    }
+    
+    /**
+     * 反射错误
+     */
+    @ExceptionHandler(ReflectionException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public RespData reflectionException(ReflectionException e) {
+    	LOGGER.error("反射异常，异常信息为：{}", e.getMessage());
+    	return RespData.getRespData(true, null, "系统异常，请联系技术人员！");
+    }
+    
+    /**
+     * 属性错误
+     */
+    @ExceptionHandler(NoSuchPropertyException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public RespData noSuchPropertyException(NoSuchPropertyException e) {
+    	LOGGER.error("属性异常，异常信息为：{}", e.getMessage());
+    	return RespData.getRespData(true, null, "系统异常，请联系技术人员！");
     }
     
 }

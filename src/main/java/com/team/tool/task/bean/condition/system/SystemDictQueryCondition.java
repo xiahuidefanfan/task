@@ -20,6 +20,32 @@ import com.team.tool.task.bean.condition.BaseCondition;
  */
 public class SystemDictQueryCondition extends BaseCondition{
 	
+	/**
+	 * 字典名称
+	 */
+	private String dictName;
+	
+	/**
+	 * 字典编码
+	 */
+	private String dictCode;
+	
+	public String getDictName() {
+		return dictName;
+	}
+
+	public void setDictName(String dictName) {
+		this.dictName = dictName;
+	}
+
+	public String getDictCode() {
+		return dictCode;
+	}
+
+	public void setDictCode(String dictCode) {
+		this.dictCode = dictCode;
+	}
+
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);

@@ -45,7 +45,7 @@ import io.swagger.annotations.ApiOperation;
  * Modification History:
  * Date         Author          Version            Description
  *------------------------------------------------------------*
- * 2018年11月12日     xiahui           v1.0.0       角色控制器
+ * 2018年11月12日     xiahui           v1.0.0           角色控制器
  */
 @RestController
 @RequestMapping("/role")
@@ -78,7 +78,7 @@ public class RoleController {
     @ApiOperation(value = "添加角色")
     public RespData add(@Valid SystemRole role, BindingResult bindingResult) {
     	/**
-    	 * 设置菜单基础信息
+    	 * 设置角色基础信息
     	 */
     	SecurityUser securityUser = SecuritySupport.getSecurityUser();
     	role.setCreator(securityUser.getUserId());
@@ -87,7 +87,7 @@ public class RoleController {
     	role.setUpdateTime(new Timestamp(System.currentTimeMillis()));
     	
     	/**
-    	 * 保存菜单信息
+    	 * 保存角色信息
     	 */
     	role.insert();
         return RespData.getRespData(true, null, "添加角色成功！");

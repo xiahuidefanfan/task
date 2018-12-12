@@ -1,5 +1,8 @@
 package com.team.tool.task.bean.condition;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 /**
  * @ClassName: BaseCondition.java
  * @Description: 基础查询条件封装
@@ -41,4 +44,8 @@ public class BaseCondition {
 		this.pageNumber = pageNumber;
 	}
 
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+	}
 }

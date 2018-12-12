@@ -13,7 +13,7 @@ import com.team.tool.task.bean.node.MenuNode;
 
 /**
  * @ClassName: SystemMenuMapper.java
- * @Description: 系统菜单dao层
+ * @Description: 系统菜单mapper层
  *
  * @version: v1.0.0
  * @author: xiahui
@@ -22,7 +22,7 @@ import com.team.tool.task.bean.node.MenuNode;
  * Modification History:
  * Date         Author          Version            Description
  *-------------------------------------------------------------*
- * 2018年11月12日     xiahui           v1.0.0             系统菜单dao层
+ * 2018年11月12日     xiahui           v1.0.0          系统菜单mapper层
  */
 public interface SystemMenuMapper extends BaseMapper<SystemMenu>{
 

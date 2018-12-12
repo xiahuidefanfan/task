@@ -34,13 +34,20 @@ public class SystemMenuWarpper extends BaseControllerWarpper{
 	
 	@Override
 	protected void warpTheMap(Map<String, Object> map) {
+		
+		dowarp(map);
 		/**
 		 * 设置子菜单
 		 */
 		String menuPcode = String.valueOf(map.get("menuCode"));
 		List<Map<String, Object>> childrens = ConstantFactory.me().queryMenuListByParent(menuPcode);
+		for(Map<String, Object> children : childrens){
+			dowarp(children);
+		}
 		map.put("childrens", childrens);
-		
+	}
+	
+	private void dowarp(Map<String, Object> map){
 		/**
 		 * 设置字典名称
 		 */
@@ -61,7 +68,6 @@ public class SystemMenuWarpper extends BaseControllerWarpper{
 		map.put("updateTimeFormat", map.get("updateTime"));
 		map.remove("createTime");
 		map.remove("updateTime");
-		
 	}
 	
 }

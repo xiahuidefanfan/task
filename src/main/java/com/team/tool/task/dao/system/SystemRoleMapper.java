@@ -13,7 +13,7 @@ import com.team.tool.task.bean.node.RoleNode;
 
 /**
  * @ClassName: SystemRoleMapper.java
- * @Description: 系统角色dao层
+ * @Description: 系统角色mapper层
  *
  * @version: v1.0.0
  * @author: xiahui
@@ -22,7 +22,7 @@ import com.team.tool.task.bean.node.RoleNode;
  * Modification History:
  * Date         Author          Version            Description
  *-------------------------------------------------------------*
- * 2018年11月12日     xiahui           v1.0.0               修改原因
+ * 2018年11月12日     xiahui           v1.0.0        系统角色mapper层
  */
 public interface SystemRoleMapper extends BaseMapper<SystemRole>{
 

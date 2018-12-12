@@ -24,6 +24,14 @@ public class SystemRoleWarpper extends BaseControllerWarpper{
 	}
 
 	@Override
-	protected void warpTheMap(Map<String, Object> map) {}
+	protected void warpTheMap(Map<String, Object> map) {
+		/**
+		 * 创建、修改时间设置
+		 */
+		map.put("createTimeFormat", map.get("createTime"));
+		map.put("updateTimeFormat", map.get("updateTime"));
+		map.remove("createTime");
+		map.remove("updateTime");
+	}
 	
 }

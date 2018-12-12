@@ -33,7 +33,13 @@ public class SystemDictWarpper extends BaseControllerWarpper{
 		String dictCode = String.valueOf(map.get("dictCode"));
 		List<Map<String, Object>> childrens = ConstantFactory.me().queryDictByParentCode(dictCode);
 		map.put("childrens", childrens);
-		
+		for(Map<String, Object> children : childrens){
+			dowarp(children);
+		}
+		dowarp(map);
+	}
+	
+	private void dowarp(Map<String, Object> map){
 		/**
 		 * 创建、修改时间设置
 		 */

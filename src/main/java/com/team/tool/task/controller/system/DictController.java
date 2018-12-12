@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,7 +18,6 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.team.tool.task.bean.condition.system.SystemDictQueryCondition;
 import com.team.tool.task.bean.dto.security.SecurityUser;
 import com.team.tool.task.bean.model.system.SystemDict;
-import com.team.tool.task.common.cache.Cache;
 import com.team.tool.task.common.support.RespData;
 import com.team.tool.task.common.support.SecuritySupport;
 import com.team.tool.task.service.system.SystemDictService;

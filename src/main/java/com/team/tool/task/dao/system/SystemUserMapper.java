@@ -11,7 +11,7 @@ import com.team.tool.task.bean.model.system.SystemUser;
 
 /**
  * @ClassName: SystemUserMapper.java
- * @Description: 系统用户dao层
+ * @Description: 系统用户mapper层
  *
  * @version: v1.0.0
  * @author: xiahui
@@ -20,7 +20,7 @@ import com.team.tool.task.bean.model.system.SystemUser;
  * Modification History:
  * Date         Author          Version            Description
  *-------------------------------------------------------------*
- * 2018年11月12日     xiahui           v1.0.0          系统用户dao层
+ * 2018年11月12日     xiahui           v1.0.0          系统用户mapper层
  */
 public interface SystemUserMapper extends BaseMapper<SystemUser>{
 
@@ -37,4 +37,12 @@ public interface SystemUserMapper extends BaseMapper<SystemUser>{
      * @date 2018年11月12日 下午11:16:45
      */
     SystemUser queryUserByUserName(@Param("username") String username);
+    
+    /**
+     * @Description: 根据角色编码获取用户
+     * @author xiahui
+     * @date 2018年12月6日 下午10:26:15
+     */
+    List<Map<String, Object>> queryByRole(@Param("roleCode") String roleCode);
+    
 }

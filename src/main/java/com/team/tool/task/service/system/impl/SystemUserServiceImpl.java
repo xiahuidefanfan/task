@@ -36,4 +36,9 @@ public class SystemUserServiceImpl extends ServiceImpl<SystemUserMapper, SystemU
 	public SystemUser queryUserByUserName(String username) {
 		return this.baseMapper.queryUserByUserName(username);
 	}
+
+	@Override
+	public List<Map<String, Object>> queryByRole(String roleCode) {
+		return this.baseMapper.queryByRole(roleCode);
+	}
 }

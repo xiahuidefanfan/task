@@ -17,6 +17,9 @@ public enum DictMenuEnum {
 	
 	SYS_SEX("sys_sex", "性别"),
 	SYS_STATE("sys_state", "状态"),
+	SERVICE_MODULE("service_group", "服务组件"),
+	DEMAND_STAGE("demand_stage", "需求阶段"),
+	MISSION_STAGE("mission_stage", "任务阶段"),
 	IS_MENU("is_menu", "是否菜单");
 	
 	private String code;

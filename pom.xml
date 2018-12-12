@@ -90,6 +90,24 @@
 				<groupId>org.springframework.session</groupId>
 				<artifactId>spring-session</artifactId>
 			</dependency>
+			
+			<!-- 工作流 -->
+			<dependency>
+	            <groupId>org.flowable</groupId>
+	          	<artifactId>flowable-spring-boot-starter-basic</artifactId>
+	          	<version>6.2.0</version>
+	          	<exclusions>
+              		<exclusion>
+	                  	<artifactId>mybatis</artifactId>
+	                  	<groupId>org.mybatis</groupId>
+	              	</exclusion>
+             		 <exclusion>
+	                  	<artifactId>activation</artifactId>
+	                  	<groupId>javax.activation</groupId>
+	              	</exclusion>
+	         	 </exclusions>
+	      	</dependency>
+			
 			<dependency>
 				<groupId>commons-lang</groupId>
 				<artifactId>commons-lang</artifactId>
@@ -186,6 +204,53 @@
 					<target>1.8</target>
 					<encoding>UTF-8</encoding>
 				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>1.4.1</version>
+				<executions>
+					<execution>
+						<id>enforce</id>
+						<configuration>
+							<rules>
+								<dependencyConvergence/>
+							</rules>
+						</configuration>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>enforce-ban-duplicate-classes</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<banDuplicateClasses>
+									<ignoreClasses>
+										<ignoreClass>javax.*</ignoreClass>
+										<ignoreClass>org.junit.*</ignoreClass>
+										<ignoreClass>net.sf.cglib.*</ignoreClass>
+										<ignoreClass>org.apache.commons.logging.*</ignoreClass>
+										<ignoreClass>org.springframework.remoting.rmi.RmiInvocationHandler</ignoreClass>
+									</ignoreClasses>
+									<findAllDuplicates>true</findAllDuplicates>
+								</banDuplicateClasses>
+							</rules>
+							<fail>true</fail>
+						</configuration>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>extra-enforcer-rules</artifactId>
+						<version>1.0-beta-9</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 		<finalName>demo</finalName>

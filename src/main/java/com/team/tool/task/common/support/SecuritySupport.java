@@ -45,7 +45,7 @@ public class SecuritySupport {
 	 */
 	public static SecurityUser bulidSecurityUser(SystemUser systemUser) {
 		if(ToolUtil.isEmpty(systemUser)) {
-			throw new SystemException(ErrorCodeEnum.TASK1001);
+			throw new SystemException(ErrorCodeEnum.SYSTEM1001);
 		}
 		SecurityUser securityUser = new SecurityUser();
 		securityUser.setUserId(systemUser.getUserId());
