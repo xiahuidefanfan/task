@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.tool.task.dao.task.TaskMissionMapper">
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.team.tool.task.bean.model.task.TaskMission">
+        <id property="missionId" column="mission_id" />
+        <result property="missionName" column="mission_name" />
+        <result property="missionDemandId" column="mission_demand_id" />
+        <result property="missionGroup" column="mission_group" />
+        <result property="missionDeveloper" column="mission_developer" />
+        <result property="missionTester" column="mission_tester" />
+        <result property="missionWorkdays" column="mission_workdays" />
+        <result property="missionStage" column="mission_stage" />
+        <result property="missionStartDate" column="mission_start_date" />
+        <result property="missionEndDate" column="mission_end_date" />
+        <result property="createTime" column="create_time" />
+        <result property="updateTime" column="update_time" />
+        <result property="creator" column="creator" />
+        <result property="updator" column="updator" />
+    </resultMap>
+    
+     <!-- 字典表字段 -->
+    <sql id="Base_Column_List">
+    	taskm.mission_id AS missionId,
+		taskm.mission_name AS missionName,
+		taskm.mission_demand_id AS missionDemandId,
+        taskd.demand_name AS missionDemandName,
+		taskm.mission_group AS missionGroup,
+		taskm.mission_developer AS missionDeveloper,
+		sysudev.user_realName AS missionDeveloperName,
+		taskm.mission_tester AS missionTester,
+		sysutes.user_realName AS missionTesterName,
+		taskm.mission_workdays AS missionWorkdays,
+		taskm.mission_stage AS missionStage,
+		DATE_FORMAT(taskm.mission_start_date, '%Y-%m-%d') AS missionStartDate,
+		DATE_FORMAT(taskm.mission_start_date, '%Y-%m-%d') AS missionEndDate,
+		taskm.create_time AS createTime,
+		taskm.update_time AS updateTime,
+		taskm.creator AS creator,
+		sysuc.user_realName AS creatorName,
+		taskm.mission_desc AS missionDesc,
+		taskm.updator AS updator,
+		sysuu.user_realName AS updatorName
+    </sql>
+   
+    <!-- 根据条件查询字典 -->
+    <select id="queryList" resultType="map">
+        SELECT 
+            <include refid="Base_Column_List" /> 
+        FROM 
+            task_mission AS taskm 
+        LEFT JOIN sys_user sysudev ON taskm.mission_developer = sysudev.user_id
+        LEFT JOIN sys_user sysutes ON taskm.mission_tester = sysutes.user_id
+        LEFT JOIN sys_user sysuc ON taskm.creator = sysuc.user_id
+        LEFT JOIN sys_user sysuu ON taskm.updator = sysuu.user_id
+        LEFT JOIN task_demand AS taskd ON taskm.mission_demand_id = taskd.demand_id
+        WHERE 
+            1 = 1
+        <if test="condition.missionName != null and condition.missionName != ''">
+            and taskm.mission_name like CONCAT('%',#{condition.missionName},'%')
+        </if>
+        <if test="condition.missionGroup != null and condition.missionGroup != ''">
+            and taskm.mission_group = #{condition.missionGroup}
+        </if>
+        <if test="condition.missionTesterName != null and condition.missionTesterName != ''">
+            and sysutes.user_realName like CONCAT('%',#{condition.missionTesterName},'%')
+        </if>
+        <if test="condition.missionDeveloperName != null and condition.missionDeveloperName != ''">
+            and sysudev.user_realName like CONCAT('%',#{condition.missionDeveloperName},'%')
+        </if>
+        <if test="condition.missionDemandName != null and condition.missionDemandName != ''">
+            and taskd.demand_name like CONCAT('%',#{condition.missionDemandName},'%')
+        </if>
+    </select>
+    
+</mapper>

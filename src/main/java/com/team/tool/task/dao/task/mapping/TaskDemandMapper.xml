@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.tool.task.dao.task.TaskDemandMapper">
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.team.tool.task.bean.model.task.TaskDemand">
+		<id property="demandId" column="demand_id" />
+        <result property="demandName" column="demand_name" />
+        <result property="demandJira" column="demand_jira" />
+        <result property="demandOriginator" column="demand_originator" />
+        <result property="demandStartDate" column="demand_start_date" />
+        <result property="demandEndDate" column="demand_end_date" />
+        <result property="demandStage" column="demand_stage" />
+        <result property="demandDesc" column="demand_desc" />
+        <result property="createTime" column="create_time" />
+        <result property="updateTime" column="update_time" />
+        <result property="creator" column="creator" />
+        <result property="updator" column="updator" />
+	</resultMap>
+    
+     <!-- 字典表字段 -->
+    <sql id="Base_Column_List">
+        taskd.demand_id AS demandId,
+		taskd.demand_name AS demandName,
+		taskd.demand_jira AS demandJira,
+		taskd.demand_originator AS demandOriginator,
+		sysud.user_realName AS demandOriginatorName,
+		DATE_FORMAT(taskd.demand_end_date, '%Y-%m-%d') AS demandEndDate,
+		DATE_FORMAT(taskd.demand_start_date, '%Y-%m-%d') AS demandStartDate,
+		taskd.demand_stage AS demandStage,
+		taskd.create_time AS createTime,
+		taskd.update_time AS updateTime,
+		taskd.creator AS creator,
+		sysuc.user_realName AS creatorName,
+		taskd.demand_desc AS demandDesc,
+		taskd.updator AS updator,
+		sysuu.user_realName AS updatorName
+    </sql>
+   
+    <!-- 根据条件查询字典 -->
+    <select id="queryList" resultType="map">
+        SELECT 
+       		<include refid="Base_Column_List" /> 
+        FROM 
+        	task_demand AS taskd 
+       	LEFT JOIN sys_user sysud ON taskd.demand_originator = sysud.user_id
+        LEFT JOIN sys_user sysuc ON taskd.creator = sysuc.user_id
+        LEFT JOIN sys_user sysuu ON taskd.updator = sysuu.user_id
+        WHERE 
+        	1 = 1
+    </select>
+    
+</mapper>
