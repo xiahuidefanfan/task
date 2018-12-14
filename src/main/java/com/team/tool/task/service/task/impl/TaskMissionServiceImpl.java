@@ -32,4 +32,16 @@ public class TaskMissionServiceImpl extends ServiceImpl<TaskMissionMapper, TaskM
 	public List<Map<String, Object>> queryList(Page<TaskMission> page, TaskMissionQueryCondition condition) {
 		return this.baseMapper.queryList(page, condition);
 	}
+	
+	@Override
+	public List<Map<String, Object>> queryListByDemand(Integer demandId) {
+		return this.baseMapper.queryListByDemand(demandId);
+	}
+
+	@Override
+	public void start() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

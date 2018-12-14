@@ -30,4 +30,17 @@ public interface TaskMissionService extends IService<TaskMission>{
 	 */
     List<Map<String, Object>> queryList(Page<TaskMission> page, TaskMissionQueryCondition condition);
 
+    /**
+     * @Description: 根据需求查询任务 
+     * @author: xiahui
+     * @date: 2018年12月13日 上午10:10:09
+     */
+    List<Map<String, Object>> queryListByDemand(Integer demandId);
+    
+    /**
+     * @Description: 启动任务流程 
+     * @author: xiahui
+     * @date: 2018年12月13日 下午9:01:09
+     */
+    void start();
 }

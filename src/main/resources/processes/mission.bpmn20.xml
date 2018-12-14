@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/processdef">
+  <process id="task" name="项目任务流程定义" isExecutable="true">
+    <startEvent id="mession_start" name="任务开始节点">
+      <documentation>任务开始</documentation>
+    </startEvent>
+    <userTask id="mission_allocation" name="任务分配" flowable:assignee="${missionDeveloper}">
+      <documentation>任务分配</documentation>
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://flowable.org/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="sid-AE746DB6-0B44-46F4-B571-E5ABB8CAF5E6" sourceRef="mession_start" targetRef="mission_allocation"></sequenceFlow>
+    <userTask id="mission_confirmed" name="任务确认">
+      <documentation>任务确认</documentation>
+    </userTask>
+    <sequenceFlow id="sid-01D360A5-7AE1-4EFE-B1B0-341701EF1A49" sourceRef="mission_allocation" targetRef="mission_confirmed"></sequenceFlow>
+    <userTask id="mission_coding" name="任务编码">
+      <documentation>任务编码</documentation>
+    </userTask>
+    <sequenceFlow id="sid-ADB3F2E9-50F7-4862-ADF1-EBE4039E5D53" sourceRef="mission_confirmed" targetRef="mission_coding"></sequenceFlow>
+    <userTask id="sid-8FF75F3E-298C-4B4E-960A-7A1E38B4E86C" name="任务自测">
+      <documentation>任务自测</documentation>
+    </userTask>
+    <sequenceFlow id="sid-47615674-BB0C-49E2-8FB9-FEA1A0AADC9D" sourceRef="mission_coding" targetRef="sid-8FF75F3E-298C-4B4E-960A-7A1E38B4E86C"></sequenceFlow>
+    <userTask id="misssion_tester_testing" name="任务转测">
+      <documentation>任务转测</documentation>
+    </userTask>
+    <sequenceFlow id="sid-A3AE29A3-0B54-40BC-836A-6246CAA5BC79" sourceRef="sid-8FF75F3E-298C-4B4E-960A-7A1E38B4E86C" targetRef="misssion_tester_testing"></sequenceFlow>
+    <userTask id="mission_waiting_online" name="等待发布">
+      <documentation>等待发布</documentation>
+    </userTask>
+    <sequenceFlow id="sid-3442F465-F6B6-417C-8569-C5D48576DDE8" sourceRef="misssion_tester_testing" targetRef="mission_waiting_online"></sequenceFlow>
+    <endEvent id="mission_end" name="结束"></endEvent>
+    <sequenceFlow id="sid-4DA6219C-71B9-46C0-B966-48F0CB5CC044" sourceRef="mission_waiting_online" targetRef="mission_end"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_task">
+    <bpmndi:BPMNPlane bpmnElement="task" id="BPMNPlane_task">
+      <bpmndi:BPMNShape bpmnElement="mession_start" id="BPMNShape_mession_start">
+        <omgdc:Bounds height="30.0" width="30.0" x="90.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="mission_allocation" id="BPMNShape_mission_allocation">
+        <omgdc:Bounds height="80.0" width="100.0" x="165.0" y="125.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="mission_confirmed" id="BPMNShape_mission_confirmed">
+        <omgdc:Bounds height="80.0" width="100.0" x="300.0" y="125.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="mission_coding" id="BPMNShape_mission_coding">
+        <omgdc:Bounds height="80.0" width="100.0" x="445.0" y="125.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-8FF75F3E-298C-4B4E-960A-7A1E38B4E86C" id="BPMNShape_sid-8FF75F3E-298C-4B4E-960A-7A1E38B4E86C">
+        <omgdc:Bounds height="80.0" width="100.0" x="590.0" y="125.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="misssion_tester_testing" id="BPMNShape_misssion_tester_testing">
+        <omgdc:Bounds height="80.0" width="100.0" x="735.0" y="125.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="mission_waiting_online" id="BPMNShape_mission_waiting_online">
+        <omgdc:Bounds height="80.0" width="100.0" x="735.0" y="255.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="mission_end" id="BPMNShape_mission_end">
+        <omgdc:Bounds height="28.0" width="28.0" x="626.0" y="281.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-ADB3F2E9-50F7-4862-ADF1-EBE4039E5D53" id="BPMNEdge_sid-ADB3F2E9-50F7-4862-ADF1-EBE4039E5D53">
+        <omgdi:waypoint x="399.95000000000005" y="165.0"></omgdi:waypoint>
+        <omgdi:waypoint x="445.0" y="165.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-3442F465-F6B6-417C-8569-C5D48576DDE8" id="BPMNEdge_sid-3442F465-F6B6-417C-8569-C5D48576DDE8">
+        <omgdi:waypoint x="785.0" y="204.95"></omgdi:waypoint>
+        <omgdi:waypoint x="785.0" y="255.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-A3AE29A3-0B54-40BC-836A-6246CAA5BC79" id="BPMNEdge_sid-A3AE29A3-0B54-40BC-836A-6246CAA5BC79">
+        <omgdi:waypoint x="689.9499999999907" y="165.0"></omgdi:waypoint>
+        <omgdi:waypoint x="734.9999999999807" y="165.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-4DA6219C-71B9-46C0-B966-48F0CB5CC044" id="BPMNEdge_sid-4DA6219C-71B9-46C0-B966-48F0CB5CC044">
+        <omgdi:waypoint x="735.0" y="295.0"></omgdi:waypoint>
+        <omgdi:waypoint x="653.9499273251088" y="295.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-AE746DB6-0B44-46F4-B571-E5ABB8CAF5E6" id="BPMNEdge_sid-AE746DB6-0B44-46F4-B571-E5ABB8CAF5E6">
+        <omgdi:waypoint x="119.94999848995758" y="165.0"></omgdi:waypoint>
+        <omgdi:waypoint x="165.0" y="165.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-47615674-BB0C-49E2-8FB9-FEA1A0AADC9D" id="BPMNEdge_sid-47615674-BB0C-49E2-8FB9-FEA1A0AADC9D">
+        <omgdi:waypoint x="544.9499999999907" y="165.0"></omgdi:waypoint>
+        <omgdi:waypoint x="589.9999999999807" y="165.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-01D360A5-7AE1-4EFE-B1B0-341701EF1A49" id="BPMNEdge_sid-01D360A5-7AE1-4EFE-B1B0-341701EF1A49">
+        <omgdi:waypoint x="264.95000000000005" y="165.0"></omgdi:waypoint>
+        <omgdi:waypoint x="300.0" y="165.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

@@ -14,6 +14,7 @@ import com.team.tool.task.common.cache.CacheKey;
 import com.team.tool.task.common.support.SpringContextHolder;
 import com.team.tool.task.dao.system.SystemDictMapper;
 import com.team.tool.task.dao.system.SystemMenuMapper;
+import com.team.tool.task.dao.task.TaskMissionMapper;
 
 /**
  * @ClassName: ConstantFactory.java
@@ -34,6 +35,7 @@ public class ConstantFactory{
 
    private SystemMenuMapper systemMenuMapper = SpringContextHolder.getBean(SystemMenuMapper.class);
    private SystemDictMapper systemDictMapper = SpringContextHolder.getBean(SystemDictMapper.class);
+   private TaskMissionMapper taskMissionMapper = SpringContextHolder.getBean(TaskMissionMapper.class);
     
    public static ConstantFactory me() {
        return SpringContextHolder.getBean("constantFactory");
@@ -87,4 +89,13 @@ public class ConstantFactory{
    public List<Map<String, Object>> queryMenuListByParent(String pcode){
 	   return systemMenuMapper.queryMenuListByParent(pcode);
    }
+   
+   /**
+    * @Description: 根据需求查询任务 
+    * @author: xiahui
+    * @date: 2018年12月13日 上午10:10:09
+    */
+   public List<Map<String, Object>> queryListByDemand(Integer demandId) {
+		return taskMissionMapper.queryListByDemand(demandId);
+	}
 }

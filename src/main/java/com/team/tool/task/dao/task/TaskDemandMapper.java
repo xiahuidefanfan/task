@@ -21,7 +21,7 @@ import com.team.tool.task.bean.model.task.TaskDemand;
  * Modification History:
  * Date         Author          Version            Description
  *-------------------------------------------------------------*
- * 2018年12月3日     xiahui           v1.0.0        需求mapper层
+ * 2018年12月3日     xiahui           v1.0.0        	需求mapper层
  */
 public interface TaskDemandMapper extends BaseMapper<TaskDemand>{
 

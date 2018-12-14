@@ -19,7 +19,7 @@
         <result property="updator" column="updator" />
     </resultMap>
     
-     <!-- 字典表字段 -->
+    <!-- 任务表字段 -->
     <sql id="Base_Column_List">
     	taskm.mission_id AS missionId,
 		taskm.mission_name AS missionName,
@@ -43,7 +43,7 @@
 		sysuu.user_realName AS updatorName
     </sql>
    
-    <!-- 根据条件查询字典 -->
+    <!-- 根据条件查询任务 -->
     <select id="queryList" resultType="map">
         SELECT 
             <include refid="Base_Column_List" /> 
@@ -71,6 +71,25 @@
         <if test="condition.missionDemandName != null and condition.missionDemandName != ''">
             and taskd.demand_name like CONCAT('%',#{condition.missionDemandName},'%')
         </if>
+        ORDER BY 
+            taskm.update_time DESC
+    </select>
+    
+        <!-- 根据需求查询任务  -->
+    <select id="queryListByDemand" resultType="map">
+        SELECT
+             <include refid="Base_Column_List" /> 
+        FROM 
+            task_mission AS taskm 
+        LEFT JOIN sys_user sysudev ON taskm.mission_developer = sysudev.user_id
+        LEFT JOIN sys_user sysutes ON taskm.mission_tester = sysutes.user_id
+        LEFT JOIN sys_user sysuc ON taskm.creator = sysuc.user_id
+        LEFT JOIN sys_user sysuu ON taskm.updator = sysuu.user_id
+        LEFT JOIN task_demand AS taskd ON taskm.mission_demand_id = taskd.demand_id
+        WHERE 
+            taskm.mission_demand_id = #{demandId}
+        ORDER BY
+            taskm.update_time DESC
     </select>
     
 </mapper>

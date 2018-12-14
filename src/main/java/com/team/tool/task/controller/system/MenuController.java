@@ -54,7 +54,7 @@ public class MenuController {
 	/**
 	 * 菜单状态
 	 */
-	private static final Map<String, String>  STATU_MAP = new HashMap<String, String>(CommonConstans.DEFAULT_MAP_SIZE);
+	private static final Map<String, String> STATU_MAP = new HashMap<String, String>(CommonConstans.DEFAULT_MAP_SIZE);
 	static {
 		STATU_MAP.put("1", "2");
 		STATU_MAP.put("2", "1");

@@ -3,6 +3,7 @@ package com.team.tool.task.warpper.task;
 import java.util.List;
 import java.util.Map;
 
+import com.team.tool.task.common.enums.DemandStageEnum;
 import com.team.tool.task.common.enums.DictMenuEnum;
 import com.team.tool.task.common.factory.ConstantFactory;
 import com.team.tool.task.common.util.DictUtil;
@@ -33,10 +34,35 @@ public class TaskDemandWarpper extends BaseControllerWarpper{
 		/**
 		 * 设置字典类型名称
 		 */
-		String missionStage = String.valueOf(map.get("demandStage"));
-		String missionStageName = DictUtil.getChildDictName(ConstantFactory.me().queryAllDicts(), DictMenuEnum.DEMAND_STAGE.getCode(), 
-				missionStage);
-		map.put("demandStageName", missionStageName);
+		String demandStage = String.valueOf(map.get("demandStage"));
+		String demandStageName = DictUtil.getChildDictName(ConstantFactory.me().queryAllDicts(), DictMenuEnum.DEMAND_STAGE.getCode(), 
+				demandStage);
+		map.put("demandStageName", demandStageName);
+		
+		/**
+		 * 设置该需求的任务集合
+		 */
+		Integer demandId = Integer.valueOf(String.valueOf(map.get("demandId")));
+		List<Map<String, Object>> childrens = ConstantFactory.me().queryListByDemand(demandId);
+		map.put("childrens", new TaskMissionWarpper(childrens).warp());
+		
+		/**
+		 * 按钮控制
+		 */
+		// 启动按钮
+		if(DemandStageEnum.DEMAND_CREATE.getCode().equals(demandStage)) {
+			map.put("showStart", true);
+		}else {
+			map.put("showStart", false);
+		}
+		
+		// 拆分按钮
+		if(DemandStageEnum.DEMAND_AUDIT.getOrder() < DemandStageEnum.getOrderByCode(demandStage).getOrder()) {
+			map.put("showAddMission", true);
+		}else {
+			map.put("showAddMission", false);
+		}
+		
 		/**
 		 * 创建、修改时间设置
 		 */

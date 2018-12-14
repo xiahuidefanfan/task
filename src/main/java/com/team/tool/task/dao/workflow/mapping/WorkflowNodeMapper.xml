@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.tool.task.dao.workflow.WorkflowNodeMapper">
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.team.tool.task.bean.model.workflow.WorkflowNode">
+        <id property="nodeId" column="node_id" />
+        <result property="nodeProcDefId" column="node_proc_def_id" />
+        <result property="nodeName" column="node_name" />
+        <result property="nodeCode" column="node_code" />
+        <result property="nodeOrder" column="node_order" />
+        <result property="nodeCanBackTo" column="node_can_back_to" />
+        <result property="nodeCanRollBack" column="node_can_back_to" />
+        <result property="nodeType" column="node_type" />
+        <result property="nodeDesc" column="node_desc" />
+        <result property="createTime" column="create_time" />
+        <result property="updateTime" column="update_time" />
+        <result property="creator" column="creator" />
+        <result property="updator" column="updator" />
+    </resultMap>
+    
+     <!-- 任务表字段 -->
+    <sql id="Base_Column_List">
+        wfnode.node_id AS nodeId,
+        wfnode.node_proc_def_id AS nodeProcDefId,
+        wfnode.node_name AS nodeName,
+        wfnode.node_code AS nodeCode,
+        wfnode.node_order AS nodeOrder,
+        wfnode.node_can_back_to AS nodeCanBackTo,
+        wfnode.node_can_back_to AS nodeCanRollBack,
+        wfnode.node_type AS nodeType,
+        wfnode.node_desc AS nodeDesc,
+        wfnode.create_time AS createTime,
+        wfnode.update_time AS updateTime,
+        wfnode.creator AS creator,
+        sysuc.user_realName AS creatorName,
+        wfnode.updator AS updator,
+        sysuu.user_realName AS updatorName
+    </sql>
+    
+     <!-- 根据条件查询任务 -->
+    <select id="queryList" resultType="map">
+        SELECT 
+            <include refid="Base_Column_List" /> 
+        FROM 
+            workflow_node AS wfnode 
+        LEFT JOIN sys_user sysuc ON wfnode.creator = sysuc.user_id
+        LEFT JOIN sys_user sysuu ON wfnode.updator = sysuu.user_id
+        WHERE 
+            1 = 1
+        ORDER BY 
+            wfnode.update_time DESC
+     </select>
+</mapper>

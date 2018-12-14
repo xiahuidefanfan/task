@@ -3,8 +3,10 @@ package com.team.tool.task.controller.task;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -26,6 +28,7 @@ import com.team.tool.task.common.enums.MissionStageEnum;
 import com.team.tool.task.common.support.RespData;
 import com.team.tool.task.common.support.SecuritySupport;
 import com.team.tool.task.service.task.TaskMissionService;
+import com.team.tool.task.service.workflow.WorkflowService;
 import com.team.tool.task.warpper.task.TaskMissionWarpper;
 
 import io.swagger.annotations.ApiOperation;
@@ -49,6 +52,9 @@ public class MissionController {
 	
 	@Autowired
 	private TaskMissionService taskMissionService;
+	
+	@Autowired
+	private WorkflowService workflowService;
 	
 	/**
 	 * @Description: 查询任务列表
@@ -112,6 +118,18 @@ public class MissionController {
         return RespData.getRespData(true, null, "修改任务成功！");
     }
     
+    /**
+  	 * 启动任务流程
+  	 */
+  	@PostMapping(value = "/start.action")
+  	@ApiOperation(value = "启动任务流程")
+  	public RespData start() {
+  		Map<String, Object> variables = new HashMap<String, Object>();
+  		variables.put("userId", "lkp");
+  		workflowService.startProcessInstance("material", "0925Test2", variables);
+  		return RespData.getRespData(true, null, "启动任务流程成功！");
+  	}
+
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
     	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
