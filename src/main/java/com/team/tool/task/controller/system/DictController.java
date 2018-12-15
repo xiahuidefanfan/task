@@ -99,7 +99,7 @@ public class DictController {
     	dict.setUpdator(securityUser.getUserId());
     	
     	/**
-    	 * 保存菜单信息
+    	 * 保存字典信息
     	 */
     	dict.updateById();
         return RespData.getRespData(true, null, "修改字典成功！");

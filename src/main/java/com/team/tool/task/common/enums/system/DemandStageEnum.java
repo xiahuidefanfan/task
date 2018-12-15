@@ -1,4 +1,4 @@
-package com.team.tool.task.common.enums;
+package com.team.tool.task.common.enums.system;
 
 /**
  * @ClassName: DemandStageEnum.java
@@ -25,11 +25,11 @@ public enum DemandStageEnum {
 	DEMAND_ONLINE("demand_online", "需求上线", 8);
 	
 	/**
-	 * @Description: 更据code获取枚举
+	 * @Description:  根据code获取枚举
 	 * @author: xiahui
 	 * @date: 2018年12月13日 上午10:54:38
 	 */
-	public static DemandStageEnum getOrderByCode(String code) {
+	public static DemandStageEnum getByCode(String code) {
 		DemandStageEnum[] all = DemandStageEnum.values();
 		for (DemandStageEnum item : all)
 		{

@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -27,6 +28,7 @@ import io.swagger.annotations.ApiModelProperty;
  *-------------------------------------------------------------*
  * 2018年12月14日     xiahui           v1.0.0          工作流节点管理
  */
+@TableName("workflow_node")
 public class WorkflowNode extends Model<WorkflowNode>{
 	
 	private static final long serialVersionUID = 1L;
@@ -95,6 +97,118 @@ public class WorkflowNode extends Model<WorkflowNode>{
 	@ApiModelProperty(value = "修改时间")
 	private Timestamp updateTime;
 	
+	public Integer getNodeId() {
+		return nodeId;
+	}
+
+	public void setNodeId(Integer nodeId) {
+		this.nodeId = nodeId;
+	}
+
+	public String getNodeName() {
+		return nodeName;
+	}
+
+	public void setNodeName(String nodeName) {
+		this.nodeName = nodeName;
+	}
+
+	public String getNodeCode() {
+		return nodeCode;
+	}
+
+	public void setNodeCode(String nodeCode) {
+		this.nodeCode = nodeCode;
+	}
+
+	public String getNodeProcDefId() {
+		return nodeProcDefId;
+	}
+
+	public void setNodeProcDefId(String nodeProcDefId) {
+		this.nodeProcDefId = nodeProcDefId;
+	}
+
+	public String getNodeVersion() {
+		return nodeVersion;
+	}
+
+	public void setNodeVersion(String nodeVersion) {
+		this.nodeVersion = nodeVersion;
+	}
+
+	public String getNodeOrder() {
+		return nodeOrder;
+	}
+
+	public void setNodeOrder(String nodeOrder) {
+		this.nodeOrder = nodeOrder;
+	}
+
+	public String getNodeCanBackTo() {
+		return nodeCanBackTo;
+	}
+
+	public void setNodeCanBackTo(String nodeCanBackTo) {
+		this.nodeCanBackTo = nodeCanBackTo;
+	}
+
+	public String getNodeCanRollBack() {
+		return nodeCanRollBack;
+	}
+
+	public void setNodeCanRollBack(String nodeCanRollBack) {
+		this.nodeCanRollBack = nodeCanRollBack;
+	}
+
+	public String getNodeType() {
+		return nodeType;
+	}
+
+	public void setNodeType(String nodeType) {
+		this.nodeType = nodeType;
+	}
+
+	public String getNodeDesc() {
+		return nodeDesc;
+	}
+
+	public void setNodeDesc(String nodeDesc) {
+		this.nodeDesc = nodeDesc;
+	}
+
+	public Integer getCreator() {
+		return creator;
+	}
+
+	public void setCreator(Integer creator) {
+		this.creator = creator;
+	}
+
+	public Integer getUpdator() {
+		return updator;
+	}
+
+	public void setUpdator(Integer updator) {
+		this.updator = updator;
+	}
+
+	public Timestamp getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Timestamp createTime) {
+		this.createTime = createTime;
+	}
+
+	public Timestamp getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Timestamp updateTime) {
+		this.updateTime = updateTime;
+	}
+
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);

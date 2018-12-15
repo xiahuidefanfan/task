@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.team.tool.task.common.enums.RoleCodeEnum;
+import com.team.tool.task.common.enums.system.RoleCodeEnum;
 import com.team.tool.task.common.support.RespData;
 import com.team.tool.task.service.system.SystemUserService;
 

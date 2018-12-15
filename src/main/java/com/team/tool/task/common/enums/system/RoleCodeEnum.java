@@ -1,4 +1,4 @@
-package com.team.tool.task.common.enums;
+package com.team.tool.task.common.enums.system;
 
 /**
  * @ClassName: RoleCodeEnum.java

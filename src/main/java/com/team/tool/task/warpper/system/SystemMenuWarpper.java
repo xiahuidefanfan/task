@@ -3,7 +3,7 @@ package com.team.tool.task.warpper.system;
 import java.util.List;
 import java.util.Map;
 
-import com.team.tool.task.common.enums.DictMenuEnum;
+import com.team.tool.task.common.enums.system.DictTypeEnum;
 import com.team.tool.task.common.factory.ConstantFactory;
 import com.team.tool.task.common.util.DictUtil;
 import com.team.tool.task.common.warpper.BaseControllerWarpper;
@@ -52,13 +52,13 @@ public class SystemMenuWarpper extends BaseControllerWarpper{
 		 * 设置字典名称
 		 */
 		String menuStatus = String.valueOf(map.get("menuStatus"));
-		String menuStatusName = DictUtil.getChildDictName(ConstantFactory.me().queryAllDicts(), DictMenuEnum.SYS_STATE.getCode(), 
+		String menuStatusName = DictUtil.getChildDictName(ConstantFactory.me().queryAllDicts(), DictTypeEnum.SYS_STATE.getCode(), 
 				menuStatus);
 		map.put("menuStatusName", menuStatusName);
 		String changeStatusName = ENABLE.equals(menuStatus) ? "禁用" : "启用";
 		map.put("changeStatusName", changeStatusName);
-		String isMenuName = DictUtil.getChildDictName(ConstantFactory.me().queryAllDicts(), DictMenuEnum.IS_MENU.getCode(), 
-				map.get("menuIsMenu").toString());
+		String isMenuName = DictUtil.getChildDictName(ConstantFactory.me().queryAllDicts(), DictTypeEnum.IS_MENU.getCode(), 
+				String.valueOf(map.get("menuIsMenu")));
 		map.put("isMenuName", isMenuName);
 		
 		/**

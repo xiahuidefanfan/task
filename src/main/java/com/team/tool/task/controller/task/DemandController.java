@@ -16,7 +16,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.team.tool.task.bean.condition.task.TaskDemandQueryCondition;
 import com.team.tool.task.bean.dto.security.SecurityUser;
 import com.team.tool.task.bean.model.task.TaskDemand;
-import com.team.tool.task.common.enums.DemandStageEnum;
+import com.team.tool.task.common.enums.system.DemandStageEnum;
 import com.team.tool.task.common.support.RespData;
 import com.team.tool.task.common.support.SecuritySupport;
 import com.team.tool.task.service.task.TaskDemandService;

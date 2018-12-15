@@ -3,8 +3,8 @@ package com.team.tool.task.warpper.task;
 import java.util.List;
 import java.util.Map;
 
-import com.team.tool.task.common.enums.DemandStageEnum;
-import com.team.tool.task.common.enums.DictMenuEnum;
+import com.team.tool.task.common.enums.system.DemandStageEnum;
+import com.team.tool.task.common.enums.system.DictTypeEnum;
 import com.team.tool.task.common.factory.ConstantFactory;
 import com.team.tool.task.common.util.DictUtil;
 import com.team.tool.task.common.warpper.BaseControllerWarpper;
@@ -35,7 +35,7 @@ public class TaskDemandWarpper extends BaseControllerWarpper{
 		 * 设置字典类型名称
 		 */
 		String demandStage = String.valueOf(map.get("demandStage"));
-		String demandStageName = DictUtil.getChildDictName(ConstantFactory.me().queryAllDicts(), DictMenuEnum.DEMAND_STAGE.getCode(), 
+		String demandStageName = DictUtil.getChildDictName(ConstantFactory.me().queryAllDicts(), DictTypeEnum.DEMAND_STAGE.getCode(), 
 				demandStage);
 		map.put("demandStageName", demandStageName);
 		
@@ -57,7 +57,7 @@ public class TaskDemandWarpper extends BaseControllerWarpper{
 		}
 		
 		// 拆分按钮
-		if(DemandStageEnum.DEMAND_AUDIT.getOrder() < DemandStageEnum.getOrderByCode(demandStage).getOrder()) {
+		if(DemandStageEnum.DEMAND_AUDIT.getOrder() < DemandStageEnum.getByCode(demandStage).getOrder()) {
 			map.put("showAddMission", true);
 		}else {
 			map.put("showAddMission", false);
