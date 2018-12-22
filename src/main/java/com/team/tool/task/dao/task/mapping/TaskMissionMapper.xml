@@ -57,19 +57,23 @@
         WHERE 
             1 = 1
         <if test="condition.missionName != null and condition.missionName != ''">
-            and taskm.mission_name like CONCAT('%',#{condition.missionName},'%')
+            AND taskm.mission_name like CONCAT('%',#{condition.missionName},'%')
         </if>
         <if test="condition.missionGroup != null and condition.missionGroup != ''">
-            and taskm.mission_group = #{condition.missionGroup}
+            AND taskm.mission_group = #{condition.missionGroup}
         </if>
         <if test="condition.missionTesterName != null and condition.missionTesterName != ''">
-            and sysutes.user_realName like CONCAT('%',#{condition.missionTesterName},'%')
+            AND sysutes.user_realName like CONCAT('%',#{condition.missionTesterName},'%')
         </if>
         <if test="condition.missionDeveloperName != null and condition.missionDeveloperName != ''">
-            and sysudev.user_realName like CONCAT('%',#{condition.missionDeveloperName},'%')
+            AND sysudev.user_realName like CONCAT('%',#{condition.missionDeveloperName},'%')
         </if>
         <if test="condition.missionDemandName != null and condition.missionDemandName != ''">
-            and taskd.demand_name like CONCAT('%',#{condition.missionDemandName},'%')
+            AND taskd.demand_name like CONCAT('%',#{condition.missionDemandName},'%')
+        </if>
+        <if test="condition.userId != null and condition.userId != ''">
+            AND taskm.mission_developer = #{condition.userId}
+            OR taskm.mission_tester = #{condition.userId}
         </if>
         ORDER BY 
             taskm.update_time DESC

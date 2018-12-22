@@ -64,6 +64,7 @@ public class MissionController {
 	@PostMapping(value = "/list.action")
     @ApiOperation(value = "任务列表查询")
     public RespData list(TaskMissionQueryCondition condition) {
+    	condition.setUserId(SecuritySupport.getSecurityUser().getUserId());
         Page<TaskMission> page = new Page<TaskMission>(condition.getPageNumber(), condition.getPageSize());
         List<Map<String, Object>> missionList = this.taskMissionService.queryList(page, condition);
         page.setRecords((List<TaskMission>) new TaskMissionWarpper(missionList).warp());

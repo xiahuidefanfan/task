@@ -7,7 +7,6 @@
         <result property="nodeName" column="node_name" />
         <result property="nodeCode" column="node_code" />
         <result property="nodeProcDefId" column="node_proc_def_id" />
-        <result property="nodeVersion" column="node_version" />
         <result property="nodeOrder" column="node_order" />
         <result property="nodeCanBackTo" column="node_can_back_to" />
         <result property="nodeCanRollBack" column="node_can_back_to" />
@@ -19,13 +18,12 @@
         <result property="updator" column="updator" />
     </resultMap>
     
-     <!-- 任务表字段 -->
+     <!-- 节点表字段 -->
     <sql id="Base_Column_List">
         wfnode.node_id AS nodeId,
         wfnode.node_name AS nodeName,
         wfnode.node_code AS nodeCode,
         wfnode.node_proc_def_id AS nodeProcDefId,
-        wfnode.node_version AS nodeVersion,
         wfnode.node_order AS nodeOrder,
         wfnode.node_can_back_to AS nodeCanBackTo,
         wfnode.node_can_roll_back AS nodeCanRollBack,
@@ -39,7 +37,7 @@
         sysuu.user_realName AS updatorName
     </sql>
     
-     <!-- 根据条件查询任务 -->
+     <!-- 根据条件查询节点 -->
     <select id="queryList" resultType="map">
         SELECT 
             <include refid="Base_Column_List" /> 
@@ -50,6 +48,20 @@
         WHERE 
             1 = 1
         ORDER BY 
-            wfnode.update_time DESC
+            wfnode.node_order ASC
+     </select>
+     
+     <!-- 根据流程id查询节点 -->
+     <select id="queryListByProcdefId" resultType="map">
+        SELECT 
+            <include refid="Base_Column_List" /> 
+        FROM 
+            workflow_node AS wfnode 
+        LEFT JOIN sys_user sysuc ON wfnode.creator = sysuc.user_id
+        LEFT JOIN sys_user sysuu ON wfnode.updator = sysuu.user_id
+        WHERE 
+            wfnode.node_proc_def_id = #{procdefId}
+        ORDER BY 
+            wfnode.node_order ASC
      </select>
 </mapper>

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.service.IService;
 import com.team.tool.task.bean.condition.workflow.WorkflowNodeQueryCondition;
 import com.team.tool.task.bean.model.workflow.WorkflowNode;
 
@@ -22,7 +23,7 @@ import com.team.tool.task.bean.model.workflow.WorkflowNode;
  *-------------------------------------------------------------*
  * 2018年12月14日     xiahui           v1.0.0       工作流节点service
  */
-public interface WorkflowNodeService {
+public interface WorkflowNodeService extends IService<WorkflowNode>{
 	
 	/**
 	 * @Description: 根据条件查询任务	
@@ -30,4 +31,11 @@ public interface WorkflowNodeService {
 	 * @date: 2018年12月14日 下午12:25:30
 	 */
     List<Map<String, Object>> queryList(@Param("page")Page<WorkflowNode> page, @Param("condition")WorkflowNodeQueryCondition condition);
+    
+    /**
+	 * @Description: 根据流程id查询节点
+	 * @author: xiahui
+	 * @date: 2018年12月21日 下午4:05:30
+	 */
+    List<Map<String, Object>> queryListByProcdefId(String procdefId);
 }

@@ -17,7 +17,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  * @ClassName: WorkFlowNode.java
- * @Description: 工作流节点管理
+ * @Description: 工作流节点模型
  *
  * @version: v1.0.0
  * @author: xiahui
@@ -26,7 +26,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Modification History:
  * Date         Author          Version            Description
  *-------------------------------------------------------------*
- * 2018年12月14日     xiahui           v1.0.0          工作流节点管理
+ * 2018年12月14日     xiahui           v1.0.0          工作流节点模型
  */
 @TableName("workflow_node")
 public class WorkflowNode extends Model<WorkflowNode>{
@@ -51,11 +51,6 @@ public class WorkflowNode extends Model<WorkflowNode>{
 	@ApiModelProperty(value = "流程定义id")
 	@NotBlank(message = "流程定义id不可为空")
 	private String nodeProcDefId;
-	
-	@TableField(value="node_version")
-	@ApiModelProperty(value = "节点版本")
-	@NotBlank(message = "节点版本")
-	private String nodeVersion;
 	
 	@TableField(value="node_order")
 	@ApiModelProperty(value = "节点顺序，越小越靠前")
@@ -127,14 +122,6 @@ public class WorkflowNode extends Model<WorkflowNode>{
 
 	public void setNodeProcDefId(String nodeProcDefId) {
 		this.nodeProcDefId = nodeProcDefId;
-	}
-
-	public String getNodeVersion() {
-		return nodeVersion;
-	}
-
-	public void setNodeVersion(String nodeVersion) {
-		this.nodeVersion = nodeVersion;
 	}
 
 	public String getNodeOrder() {

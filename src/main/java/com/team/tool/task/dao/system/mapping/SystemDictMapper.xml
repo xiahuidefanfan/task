@@ -44,10 +44,10 @@
         WHERE 
         	1 = 1
        	<if test="condition.dictName != null and condition.dictName != ''">
-			and sysd.dict_name like CONCAT('%',#{condition.dictName},'%')
+			AND sysd.dict_name like CONCAT('%',#{condition.dictName},'%')
 		</if>
        	<if test="condition.dictCode != null and condition.dictCode != ''">
-			and sysd.dict_code like CONCAT('%',#{condition.dictCode},'%')
+			AND sysd.dict_code like CONCAT('%',#{condition.dictCode},'%')
 		</if>
         AND sysd.dict_pid = 0
         ORDER BY sysd.dict_order ASC

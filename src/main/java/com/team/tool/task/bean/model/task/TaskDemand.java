@@ -67,6 +67,9 @@ public class TaskDemand extends Model<TaskDemand>{
 	@ApiModelProperty(value = "需求描述")
 	private String demandDesc;
 	
+	@ApiModelProperty(value = "流程实例")
+	private String demandProcessId;
+	
 	@TableField(value="creator")
 	@ApiModelProperty(value = "创建人")
 	private Integer creator;
@@ -145,6 +148,14 @@ public class TaskDemand extends Model<TaskDemand>{
 
 	public void setDemandDesc(String demandDesc) {
 		this.demandDesc = demandDesc;
+	}
+	
+	public String getDemandProcessId() {
+		return demandProcessId;
+	}
+
+	public void setDemandProcessId(String demandProcessId) {
+		this.demandProcessId = demandProcessId;
 	}
 
 	public Integer getCreator() {

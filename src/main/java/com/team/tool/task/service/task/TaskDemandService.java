@@ -26,8 +26,15 @@ public interface TaskDemandService extends IService<TaskDemand>{
 	/**
 	 * @Description: 根据条件查询需求
 	 * @author: xiahui
-	 * @author: xiahui
 	 * @date: 2018年12月3日 下午7:14:52	
 	 */
     List<Map<String, Object>> queryList(Page<TaskDemand> page, TaskDemandQueryCondition condition);
+    
+   /**
+    * @Description: 启动报销流程
+    * @author: xiahui
+	* @date: 2018年12月22日 下午4:33:52	
+    */
+   void execute(TaskDemand taskDemand);
+    
 }

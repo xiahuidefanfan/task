@@ -11,24 +11,39 @@
       </extensionElements>
     </userTask>
     <sequenceFlow id="sid-AE746DB6-0B44-46F4-B571-E5ABB8CAF5E6" sourceRef="mession_start" targetRef="mission_allocation"></sequenceFlow>
-    <userTask id="mission_confirmed" name="任务确认">
+    <userTask id="mission_confirmed" name="任务确认" flowable:assignee="${missionDeveloper}">
       <documentation>任务确认</documentation>
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://flowable.org/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
     </userTask>
     <sequenceFlow id="sid-01D360A5-7AE1-4EFE-B1B0-341701EF1A49" sourceRef="mission_allocation" targetRef="mission_confirmed"></sequenceFlow>
-    <userTask id="mission_coding" name="任务编码">
+    <userTask id="mission_coding" name="任务编码" flowable:assignee="${missionDeveloper}">
       <documentation>任务编码</documentation>
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://flowable.org/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
     </userTask>
     <sequenceFlow id="sid-ADB3F2E9-50F7-4862-ADF1-EBE4039E5D53" sourceRef="mission_confirmed" targetRef="mission_coding"></sequenceFlow>
-    <userTask id="sid-8FF75F3E-298C-4B4E-960A-7A1E38B4E86C" name="任务自测">
+    <userTask id="sid-8FF75F3E-298C-4B4E-960A-7A1E38B4E86C" name="任务自测" flowable:assignee="${missionDeveloper}">
       <documentation>任务自测</documentation>
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://flowable.org/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
     </userTask>
     <sequenceFlow id="sid-47615674-BB0C-49E2-8FB9-FEA1A0AADC9D" sourceRef="mission_coding" targetRef="sid-8FF75F3E-298C-4B4E-960A-7A1E38B4E86C"></sequenceFlow>
-    <userTask id="misssion_tester_testing" name="任务转测">
+    <userTask id="misssion_tester_testing" name="任务转测" flowable:assignee="${missionTester}">
       <documentation>任务转测</documentation>
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://flowable.org/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
     </userTask>
     <sequenceFlow id="sid-A3AE29A3-0B54-40BC-836A-6246CAA5BC79" sourceRef="sid-8FF75F3E-298C-4B4E-960A-7A1E38B4E86C" targetRef="misssion_tester_testing"></sequenceFlow>
-    <userTask id="mission_waiting_online" name="等待发布">
+    <userTask id="mission_waiting_online" name="等待发布" flowable:assignee="${missionTester}">
       <documentation>等待发布</documentation>
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://flowable.org/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
     </userTask>
     <sequenceFlow id="sid-3442F465-F6B6-417C-8569-C5D48576DDE8" sourceRef="misssion_tester_testing" targetRef="mission_waiting_online"></sequenceFlow>
     <endEvent id="mission_end" name="结束"></endEvent>
@@ -49,10 +64,10 @@
         <omgdc:Bounds height="80.0" width="100.0" x="445.0" y="125.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="sid-8FF75F3E-298C-4B4E-960A-7A1E38B4E86C" id="BPMNShape_sid-8FF75F3E-298C-4B4E-960A-7A1E38B4E86C">
-        <omgdc:Bounds height="80.0" width="100.0" x="590.0" y="125.0"></omgdc:Bounds>
+        <omgdc:Bounds height="80.0" width="100.0" x="585.0" y="120.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="misssion_tester_testing" id="BPMNShape_misssion_tester_testing">
-        <omgdc:Bounds height="80.0" width="100.0" x="735.0" y="125.0"></omgdc:Bounds>
+        <omgdc:Bounds height="80.0" width="100.0" x="735.0" y="120.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="mission_waiting_online" id="BPMNShape_mission_waiting_online">
         <omgdc:Bounds height="80.0" width="100.0" x="735.0" y="255.0"></omgdc:Bounds>
@@ -65,12 +80,12 @@
         <omgdi:waypoint x="445.0" y="165.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="sid-3442F465-F6B6-417C-8569-C5D48576DDE8" id="BPMNEdge_sid-3442F465-F6B6-417C-8569-C5D48576DDE8">
-        <omgdi:waypoint x="785.0" y="204.95"></omgdi:waypoint>
+        <omgdi:waypoint x="785.0" y="199.95"></omgdi:waypoint>
         <omgdi:waypoint x="785.0" y="255.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="sid-A3AE29A3-0B54-40BC-836A-6246CAA5BC79" id="BPMNEdge_sid-A3AE29A3-0B54-40BC-836A-6246CAA5BC79">
-        <omgdi:waypoint x="689.9499999999907" y="165.0"></omgdi:waypoint>
-        <omgdi:waypoint x="734.9999999999807" y="165.0"></omgdi:waypoint>
+        <omgdi:waypoint x="684.9499999999581" y="160.0"></omgdi:waypoint>
+        <omgdi:waypoint x="734.9999999999363" y="160.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="sid-4DA6219C-71B9-46C0-B966-48F0CB5CC044" id="BPMNEdge_sid-4DA6219C-71B9-46C0-B966-48F0CB5CC044">
         <omgdi:waypoint x="735.0" y="295.0"></omgdi:waypoint>
@@ -81,8 +96,8 @@
         <omgdi:waypoint x="165.0" y="165.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="sid-47615674-BB0C-49E2-8FB9-FEA1A0AADC9D" id="BPMNEdge_sid-47615674-BB0C-49E2-8FB9-FEA1A0AADC9D">
-        <omgdi:waypoint x="544.9499999999907" y="165.0"></omgdi:waypoint>
-        <omgdi:waypoint x="589.9999999999807" y="165.0"></omgdi:waypoint>
+        <omgdi:waypoint x="544.9499999999998" y="163.21428571428572"></omgdi:waypoint>
+        <omgdi:waypoint x="584.9999999999993" y="161.78392857142856"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="sid-01D360A5-7AE1-4EFE-B1B0-341701EF1A49" id="BPMNEdge_sid-01D360A5-7AE1-4EFE-B1B0-341701EF1A49">
         <omgdi:waypoint x="264.95000000000005" y="165.0"></omgdi:waypoint>

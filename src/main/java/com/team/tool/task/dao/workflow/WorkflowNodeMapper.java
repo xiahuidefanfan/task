@@ -11,7 +11,7 @@ import com.team.tool.task.bean.condition.workflow.WorkflowNodeQueryCondition;
 import com.team.tool.task.bean.model.workflow.WorkflowNode;
 
 /**
- * @ClassName: WorkFlowNodeMapper.java
+ * @ClassName: WorkflowNodeMapper.java
  * @Description: 节点mapper层
  *
  * @version: v1.0.0
@@ -31,4 +31,11 @@ public interface WorkflowNodeMapper extends BaseMapper<WorkflowNode>{
 	 * @date: 2018年12月14日 下午12:25:30
 	 */
     List<Map<String, Object>> queryList(@Param("page")Page<WorkflowNode> page, @Param("condition")WorkflowNodeQueryCondition condition);
+    
+    /**
+	 * @Description: 根据流程id查询节点
+	 * @author: xiahui
+	 * @date: 2018年12月21日 下午4:05:30
+	 */
+    List<Map<String, Object>> queryListByProcdefId(@Param("procdefId")String procdefId);
 }

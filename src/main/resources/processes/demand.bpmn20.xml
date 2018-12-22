@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/processdef">
+  <process id="task_demand" name="需求流程" isExecutable="true">
+    <documentation>需求流程</documentation>
+    <startEvent id="start" name="开始节点">
+      <documentation>开始节点</documentation>
+    </startEvent>
+    <userTask id="demand_start" name="需求启动">
+      <documentation>需求启动</documentation>
+    </userTask>
+    <sequenceFlow id="sid-5717A772-9409-40BE-88E8-544CD464BE8C" sourceRef="start" targetRef="demand_start"></sequenceFlow>
+    <userTask id="demand_audit" name="需求评审">
+      <documentation>需求评审</documentation>
+    </userTask>
+    <sequenceFlow id="sid-FB872C58-0FA1-4B2A-848D-6817288435F3" sourceRef="demand_start" targetRef="demand_audit"></sequenceFlow>
+    <userTask id="demand_design" name="需求设计">
+      <documentation>需求设计</documentation>
+    </userTask>
+    <sequenceFlow id="sid-7D39ED3E-3056-4F0F-826B-B97D444B4E93" sourceRef="demand_audit" targetRef="demand_design"></sequenceFlow>
+    <userTask id="demand_development" name="需求开发">
+      <documentation>需求开发</documentation>
+    </userTask>
+    <sequenceFlow id="sid-77C0B2E8-AEB7-4A74-B745-C10A0B2FDEE7" sourceRef="demand_design" targetRef="demand_development"></sequenceFlow>
+    <userTask id="demand_test" name="需求测试">
+      <documentation>需求测试</documentation>
+    </userTask>
+    <sequenceFlow id="sid-E763E852-0B70-4D18-802D-846F95BB6E23" sourceRef="demand_development" targetRef="demand_test"></sequenceFlow>
+    <userTask id="demand_check_accept" name="需求验收">
+      <documentation>需求验收</documentation>
+    </userTask>
+    <sequenceFlow id="sid-40CFB769-4543-4114-9CC7-A239800B3DF6" sourceRef="demand_test" targetRef="demand_check_accept"></sequenceFlow>
+    <userTask id="demand_online" name="需求上线">
+      <documentation>需求上线</documentation>
+    </userTask>
+    <sequenceFlow id="sid-3A6FF9AB-D635-45FB-86EC-C66BB3CE37A9" sourceRef="demand_check_accept" targetRef="demand_online"></sequenceFlow>
+    <endEvent id="end" name="结束">
+      <documentation>结束</documentation>
+    </endEvent>
+    <sequenceFlow id="sid-19A6E350-2289-4B7E-8EB6-86AC04893B18" sourceRef="demand_online" targetRef="end"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_task_demand">
+    <bpmndi:BPMNPlane bpmnElement="task_demand" id="BPMNPlane_task_demand">
+      <bpmndi:BPMNShape bpmnElement="start" id="BPMNShape_start">
+        <omgdc:Bounds height="30.0" width="30.0" x="100.0" y="163.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="demand_start" id="BPMNShape_demand_start">
+        <omgdc:Bounds height="80.0" width="100.0" x="165.0" y="135.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="demand_audit" id="BPMNShape_demand_audit">
+        <omgdc:Bounds height="80.0" width="100.0" x="320.0" y="135.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="demand_design" id="BPMNShape_demand_design">
+        <omgdc:Bounds height="80.0" width="100.0" x="465.0" y="135.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="demand_development" id="BPMNShape_demand_development">
+        <omgdc:Bounds height="80.0" width="100.0" x="610.0" y="135.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="demand_test" id="BPMNShape_demand_test">
+        <omgdc:Bounds height="80.0" width="100.0" x="755.0" y="135.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="demand_check_accept" id="BPMNShape_demand_check_accept">
+        <omgdc:Bounds height="80.0" width="100.0" x="900.0" y="135.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="demand_online" id="BPMNShape_demand_online">
+        <omgdc:Bounds height="80.0" width="100.0" x="900.0" y="255.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="end" id="BPMNShape_end">
+        <omgdc:Bounds height="28.0" width="28.0" x="791.0" y="281.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-77C0B2E8-AEB7-4A74-B745-C10A0B2FDEE7" id="BPMNEdge_sid-77C0B2E8-AEB7-4A74-B745-C10A0B2FDEE7">
+        <omgdi:waypoint x="564.9499999999907" y="175.0"></omgdi:waypoint>
+        <omgdi:waypoint x="609.9999999999807" y="175.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-19A6E350-2289-4B7E-8EB6-86AC04893B18" id="BPMNEdge_sid-19A6E350-2289-4B7E-8EB6-86AC04893B18">
+        <omgdi:waypoint x="900.0" y="295.0"></omgdi:waypoint>
+        <omgdi:waypoint x="818.9499273251088" y="295.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-3A6FF9AB-D635-45FB-86EC-C66BB3CE37A9" id="BPMNEdge_sid-3A6FF9AB-D635-45FB-86EC-C66BB3CE37A9">
+        <omgdi:waypoint x="950.0" y="214.95000000000002"></omgdi:waypoint>
+        <omgdi:waypoint x="950.0" y="255.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-FB872C58-0FA1-4B2A-848D-6817288435F3" id="BPMNEdge_sid-FB872C58-0FA1-4B2A-848D-6817288435F3">
+        <omgdi:waypoint x="264.949999999976" y="175.0"></omgdi:waypoint>
+        <omgdi:waypoint x="320.0" y="175.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-7D39ED3E-3056-4F0F-826B-B97D444B4E93" id="BPMNEdge_sid-7D39ED3E-3056-4F0F-826B-B97D444B4E93">
+        <omgdi:waypoint x="419.94999999999067" y="175.0"></omgdi:waypoint>
+        <omgdi:waypoint x="464.9999999999807" y="175.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-5717A772-9409-40BE-88E8-544CD464BE8C" id="BPMNEdge_sid-5717A772-9409-40BE-88E8-544CD464BE8C">
+        <omgdi:waypoint x="129.94340692927761" y="177.55019845363262"></omgdi:waypoint>
+        <omgdi:waypoint x="164.99999999999906" y="176.4985"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-E763E852-0B70-4D18-802D-846F95BB6E23" id="BPMNEdge_sid-E763E852-0B70-4D18-802D-846F95BB6E23">
+        <omgdi:waypoint x="709.9499999999907" y="175.0"></omgdi:waypoint>
+        <omgdi:waypoint x="754.9999999999807" y="175.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-40CFB769-4543-4114-9CC7-A239800B3DF6" id="BPMNEdge_sid-40CFB769-4543-4114-9CC7-A239800B3DF6">
+        <omgdi:waypoint x="854.9499999999907" y="175.0"></omgdi:waypoint>
+        <omgdi:waypoint x="899.9999999999807" y="175.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

@@ -33,4 +33,8 @@ public class WorkflowNodeServiceImpl extends ServiceImpl<WorkflowNodeMapper, Wor
 		return this.baseMapper.queryList(page, condition);
 	}
 	
+	@Override
+	public List<Map<String, Object>> queryListByProcdefId(String procdefId) {
+		return this.baseMapper.queryListByProcdefId(procdefId);
+	}
 }

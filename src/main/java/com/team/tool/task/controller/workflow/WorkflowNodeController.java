@@ -8,9 +8,11 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.baomidou.mybatisplus.plugins.Page;
@@ -51,7 +53,7 @@ public class WorkflowNodeController {
 	 */
 	@SuppressWarnings("unchecked")
 	@PostMapping(value = "/list.action")
-    @ApiOperation(value = "需求列表查询")
+    @ApiOperation(value = "节点列表查询")
 	public RespData list(WorkflowNodeQueryCondition condition) {
 		Page<WorkflowNode> page = new Page<WorkflowNode>(condition.getPageNumber(), condition.getPageSize());
         List<Map<String, Object>> list = this.workflowNodeService.queryList(page, condition);
@@ -102,5 +104,17 @@ public class WorkflowNodeController {
     	 */
     	node.updateById();
         return RespData.getRespData(true, null, "修改节点成功！");
+    }
+    
+    /**
+     * @Description: 删除节点
+     * @author: xiahui
+     * @date: 2018年12月22日 下午1:30:00
+     */
+    @DeleteMapping(value = "/delete.action")
+    @ApiOperation(value = "删除节点")
+    public RespData update(@RequestParam Integer nodeId) {
+    	workflowNodeService.deleteById(nodeId);
+  		return RespData.getRespData(true, null, "删除节点成功！");
     }
 }

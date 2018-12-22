@@ -32,7 +32,7 @@
 		WHERE 
 			1 = 1
 		<if test="condition.roleName != null and condition.roleName != ''">
-			and sysr.role_name like CONCAT('%',#{condition.roleName},'%')
+			AND sysr.role_name like CONCAT('%',#{condition.roleName},'%')
 		</if>
 		ORDER BY
 			sysr.role_order ASC, sysr.update_time DESC

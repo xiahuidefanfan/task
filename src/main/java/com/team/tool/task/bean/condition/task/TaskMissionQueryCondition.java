@@ -42,6 +42,11 @@ public class TaskMissionQueryCondition extends BaseCondition{
 	 */
 	private String missionDemandName;
 	
+	/**
+	 * 所属开发
+	 */
+	private Integer userId;
+	
 	public String getMissionName() {
 		return missionName;
 	}
@@ -71,6 +76,12 @@ public class TaskMissionQueryCondition extends BaseCondition{
 	}
 	public void setMissionDemandName(String missionDemandName) {
 		this.missionDemandName = missionDemandName;
+	}
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 	
 }

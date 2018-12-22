@@ -34,10 +34,9 @@ public class SecuritySupport {
 	 * @date 2018年11月15日 下午8:17:33
 	 */
 	public static SecurityUser getSecurityUser() {
-		return (SecurityUser) SecurityContextHolder.getContext().getAuthentication() .getPrincipal();
+		return (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	}
 	
-
 	/**
 	 * @Description: 获取前端用户信息封装
 	 * @author xiahui

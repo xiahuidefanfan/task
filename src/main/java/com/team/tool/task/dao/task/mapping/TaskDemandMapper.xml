@@ -10,6 +10,7 @@
         <result property="demandStartDate" column="demand_start_date" />
         <result property="demandEndDate" column="demand_end_date" />
         <result property="demandStage" column="demand_stage" />
+        <result property="demandProcessId" column="demand_process_id" />
         <result property="demandDesc" column="demand_desc" />
         <result property="createTime" column="create_time" />
         <result property="updateTime" column="update_time" />
@@ -26,6 +27,7 @@
 		sysud.user_realName AS demandOriginatorName,
 		DATE_FORMAT(taskd.demand_end_date, '%Y-%m-%d') AS demandEndDate,
 		DATE_FORMAT(taskd.demand_start_date, '%Y-%m-%d') AS demandStartDate,
+		taskd.demand_process_id AS demandProcessId,
 		taskd.demand_stage AS demandStage,
 		taskd.create_time AS createTime,
 		taskd.update_time AS updateTime,
