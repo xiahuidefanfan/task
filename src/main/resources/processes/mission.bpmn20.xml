@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/processdef">
-  <process id="task" name="项目任务流程定义" isExecutable="true">
+  <process id="task_mission" name="项目任务流程定义" isExecutable="true">
     <startEvent id="mession_start" name="任务开始节点">
       <documentation>任务开始</documentation>
     </startEvent>
@@ -49,8 +49,8 @@
     <endEvent id="mission_end" name="结束"></endEvent>
     <sequenceFlow id="sid-4DA6219C-71B9-46C0-B966-48F0CB5CC044" sourceRef="mission_waiting_online" targetRef="mission_end"></sequenceFlow>
   </process>
-  <bpmndi:BPMNDiagram id="BPMNDiagram_task">
-    <bpmndi:BPMNPlane bpmnElement="task" id="BPMNPlane_task">
+  <bpmndi:BPMNDiagram id="BPMNDiagram_task_mission">
+    <bpmndi:BPMNPlane bpmnElement="task_mission" id="BPMNPlane_task_mission">
       <bpmndi:BPMNShape bpmnElement="mession_start" id="BPMNShape_mession_start">
         <omgdc:Bounds height="30.0" width="30.0" x="90.0" y="150.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>

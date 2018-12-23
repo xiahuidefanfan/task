@@ -7,18 +7,13 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.mumu.core.exception.MumuException;
-import com.mumu.core.util.ToolUtil;
 import com.team.tool.task.bean.condition.task.TaskDemandQueryCondition;
 import com.team.tool.task.bean.dto.security.SecurityUser;
 import com.team.tool.task.bean.model.task.TaskDemand;
@@ -26,7 +21,6 @@ import com.team.tool.task.common.enums.system.DemandStageEnum;
 import com.team.tool.task.common.support.RespData;
 import com.team.tool.task.common.support.SecuritySupport;
 import com.team.tool.task.service.task.TaskDemandService;
-import com.team.tool.task.service.workflow.WorkflowService;
 import com.team.tool.task.warpper.task.TaskDemandWarpper;
 
 import io.swagger.annotations.ApiOperation;
@@ -99,12 +93,9 @@ public class DemandController {
      */
     @RequestMapping(value = "/execute")
     @ResponseBody
-    public RespData execute(@RequestParam String processId) {
-        if (ToolUtil.isEmpty(processId)) {
-            throw new MumuException(BizExceptionEnum.REQUEST_NULL);
-        }
-      expenseService.execute(processId);
-        return RespData.getRespData(HttpStatus.OK.value(), "", "提交报销申请成功！");
+    public RespData execute(TaskDemand demand) {
+    	taskDemandService.execute(demand);
+    	return RespData.getRespData(true, null, "启动需求流程成功！");
     }
     
 }

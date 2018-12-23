@@ -9,12 +9,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.team.tool.task.bean.condition.task.TaskDemandQueryCondition;
 import com.team.tool.task.bean.model.task.TaskDemand;
-import com.team.tool.task.common.constants.CommonConstans;
+import com.team.tool.task.common.support.SecuritySupport;
 import com.team.tool.task.dao.task.TaskDemandMapper;
 import com.team.tool.task.service.task.TaskDemandService;
 import com.team.tool.task.service.workflow.WorkflowService;
@@ -46,21 +47,21 @@ public class TaskDemandServiceImpl extends ServiceImpl<TaskDemandMapper, TaskDem
 	}
 
 	@Override
+	@Transactional
 	public void execute(TaskDemand taskDemand) {
-		LOGGER.info("添加" + taskDemand.getDemandDesc() + "需求流程开始！");
-        
+		LOGGER.info("运行：{}，需求流程开始！，状态为：{}", taskDemand.getDemandDesc(), taskDemand.getDemandStage());
         //启动流程
-        HashMap<String, Object> map = new HashMap<>(CommonConstans.DEFAULT_MAP_SIZE);
-        map.put("taskUser", ShiroKit.getUser().getId());
-        map.put("money", expense.getMoney());
-        ProcessInstance processInstance = workFlowService.startProcessInstance("Expense",null, map);
+		Map<String, Object> map = new HashMap<String, Object>();
+        ProcessInstance processInstance = workflowService.startProcessInstance("task_demand", 
+        		String.valueOf(taskDemand.getDemandId()), map);
         
         //保存业务数据
-        expense.setUserId(ShiroKit.getUser().getId());
-        expense.setState(FlowableState.SUBMITING.getCode());
-        expense.setProcessId(processInstance.getId());
-        this.insert(expense);
-        LOGGER.info("添加报销流程成功！流程实例id：" + expense.getProcessId());
+		taskDemand.setUpdator(SecuritySupport.getSecurityUser().getUserId());
+		String demandStage = workflowService.querySingleTaskByProcessInstanceId(processInstance.getId()).getId();
+		taskDemand.setDemandStage(demandStage);
+		taskDemand.setDemandProcessId(processInstance.getId());
+        this.insert(taskDemand);
+        LOGGER.info("运行需求流程成功！流程实例id：{}，运行后状态为：{}", taskDemand.getDemandProcessId(), demandStage);
 	}
 
 }

@@ -7,30 +7,51 @@
     </startEvent>
     <userTask id="demand_start" name="需求启动">
       <documentation>需求启动</documentation>
+      <extensionElements>
+        <flowable:taskListener event="create" class="com.team.tool.task.common.listener.flowable.demand.TaskDemandAssigneeListener"></flowable:taskListener>
+      </extensionElements>
     </userTask>
     <sequenceFlow id="sid-5717A772-9409-40BE-88E8-544CD464BE8C" sourceRef="start" targetRef="demand_start"></sequenceFlow>
     <userTask id="demand_audit" name="需求评审">
       <documentation>需求评审</documentation>
+      <extensionElements>
+        <flowable:taskListener event="create" class="com.team.tool.task.common.listener.flowable.demand.TaskDemandAssigneeListener"></flowable:taskListener>
+      </extensionElements>
     </userTask>
     <sequenceFlow id="sid-FB872C58-0FA1-4B2A-848D-6817288435F3" sourceRef="demand_start" targetRef="demand_audit"></sequenceFlow>
     <userTask id="demand_design" name="需求设计">
       <documentation>需求设计</documentation>
+      <extensionElements>
+        <flowable:taskListener event="create" class="com.team.tool.task.common.listener.flowable.demand.TaskDemandAssigneeListener"></flowable:taskListener>
+      </extensionElements>
     </userTask>
     <sequenceFlow id="sid-7D39ED3E-3056-4F0F-826B-B97D444B4E93" sourceRef="demand_audit" targetRef="demand_design"></sequenceFlow>
     <userTask id="demand_development" name="需求开发">
       <documentation>需求开发</documentation>
+      <extensionElements>
+        <flowable:taskListener event="create" class="com.team.tool.task.common.listener.flowable.demand.TaskDemandAssigneeListener"></flowable:taskListener>
+      </extensionElements>
     </userTask>
     <sequenceFlow id="sid-77C0B2E8-AEB7-4A74-B745-C10A0B2FDEE7" sourceRef="demand_design" targetRef="demand_development"></sequenceFlow>
     <userTask id="demand_test" name="需求测试">
       <documentation>需求测试</documentation>
+      <extensionElements>
+        <flowable:taskListener event="create" class="com.team.tool.task.common.listener.flowable.demand.TaskDemandAssigneeListener"></flowable:taskListener>
+      </extensionElements>
     </userTask>
     <sequenceFlow id="sid-E763E852-0B70-4D18-802D-846F95BB6E23" sourceRef="demand_development" targetRef="demand_test"></sequenceFlow>
     <userTask id="demand_check_accept" name="需求验收">
       <documentation>需求验收</documentation>
+      <extensionElements>
+        <flowable:taskListener event="create" class="com.team.tool.task.common.listener.flowable.demand.TaskDemandAssigneeListener"></flowable:taskListener>
+      </extensionElements>
     </userTask>
     <sequenceFlow id="sid-40CFB769-4543-4114-9CC7-A239800B3DF6" sourceRef="demand_test" targetRef="demand_check_accept"></sequenceFlow>
     <userTask id="demand_online" name="需求上线">
       <documentation>需求上线</documentation>
+      <extensionElements>
+        <flowable:taskListener event="create" class="com.team.tool.task.common.listener.flowable.demand.TaskDemandAssigneeListener"></flowable:taskListener>
+      </extensionElements>
     </userTask>
     <sequenceFlow id="sid-3A6FF9AB-D635-45FB-86EC-C66BB3CE37A9" sourceRef="demand_check_accept" targetRef="demand_online"></sequenceFlow>
     <endEvent id="end" name="结束">

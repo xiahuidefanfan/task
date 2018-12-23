@@ -15,8 +15,9 @@ package com.team.tool.task.common.enums.system;
  */
 public enum RoleCodeEnum {
 	
-	DEVELOPER_ENGINEER("developer_engineer", "开发工程师"),
-	TEST_ENGINEER("test_engineer", "测试工程师");
+	DEVELOPER_ENGINEER("DEVELOPER_ENGINEER", "开发工程师"),
+	PRODUCT_MANAGER("PRODUCT_MANAGER", "产品经理"),
+	TEST_ENGINEER("TEST_ENGINEER", "测试工程师");
 	
 	private String code;
 	private String name;
